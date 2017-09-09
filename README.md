@@ -1,1 +1,0 @@
-# purjayadi.github.io
