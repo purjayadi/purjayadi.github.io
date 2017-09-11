@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Login BM Link</title>
+    <title>Konfirmasi Pembayaran</title>
 
     <!-- Global stylesheets -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
@@ -21,12 +21,20 @@
     <script type="text/javascript" src="<?php echo base_url('assets/js/core/libraries/jquery.min.js')?>"></script>
     <script type="text/javascript" src="<?php echo base_url('assets/js/core/libraries/bootstrap.min.js')?>"></script>
     <script type="text/javascript" src="<?php echo base_url('assets/js/plugins/loaders/blockui.min.js')?>"></script>
+    
+    <script type="text/javascript" src="<?php echo base_url('assets/js/plugins/ui/moment/moment.min.js')?>"></script>
+    <script type="text/javascript" src="<?php echo base_url('assets/js/plugins/pickers/daterangepicker.js')?>"></script>
+    <script type="text/javascript" src="<?php echo base_url('assets/js/plugins/pickers/anytime.min.js')?>"></script>
+    <script type="text/javascript" src="<?php echo base_url('assets/js/plugins/pickers/pickadate/picker.js')?>"></script>
+    <script type="text/javascript" src="<?php echo base_url('assets/js/plugins/pickers/pickadate/picker.date.js')?>"></script>
+    <script type="text/javascript" src="<?php echo base_url('assets/js/plugins/pickers/pickadate/picker.time.js')?>"></script>
     <!-- /core JS files -->
 
     <!-- Theme JS files -->
     <script type="text/javascript" src="<?php echo base_url('assets/js/plugins/forms/styling/uniform.min.js')?>"></script>
 
     <script type="text/javascript" src="<?php echo base_url('assets/js/core/app.js')?>"></script>
+    <script type="text/javascript" src="<?php echo base_url('assets/js/pages/picker_date.js')?>"></script>
     <script type="text/javascript" src="<?php echo base_url('assets/js/pages/login.js')?>"></script>
     <!-- /theme JS files -->
 
@@ -37,7 +45,7 @@
     <!-- Main navbar -->
     <div class="navbar navbar-inverse">
         <div class="navbar-header">
-            <a class="navbar-brand" href="index.html"><img src="assets/images/logo_light.png" alt=""></a>
+            <a class="navbar-brand" href="index.html"><img src="<php echo base_url('assets/images/logo_light.png')?>" alt=""></a>
 
             <ul class="nav navbar-nav pull-right visible-xs-block">
                 <li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
@@ -88,13 +96,12 @@
                             </div>
                             <?php echo $this->session->flashdata('message'); ?>
                             <div class="form-group has-feedback has-feedback-left"><?php echo form_error('kode_user') ?>
-                                <input type="text" class="form-control"  placeholder="Kode User" name="kode_user" autocomplete="off" required="required">
+                                <input type="email" class="form-control"  placeholder="Email" name="kode_user" autocomplete="off" required="required">
                                 <div class="form-control-feedback">
-                                    <i class="icon-user text-muted"></i>
+                                    <i class=" icon-envelop2 text-muted"></i>
                                 </div>
                             </div>
 
-                           <?php echo $this->session->flashdata('message'); ?>
                             <div class="form-group has-feedback has-feedback-left">
                                 <?php echo form_error('nama_pengirim') ?>
                                 <input type="text" class="form-control"  placeholder="Nama Pengirim" name="nama_pengirim" autocomplete="off" required="required">
@@ -102,35 +109,33 @@
                                     <i class="icon-user text-muted"></i>
                                 </div>
                             </div>
-                            <?php echo $this->session->flashdata('message'); ?>
                             <div class="form-group has-feedback has-feedback-left">
                                 <?php echo form_error('tgl_transfer') ?>
-                                <input type="text" class="form-control"  placeholder="Tanggal Transfer" name="tgl_transfer" autocomplete="off" required="required">
+                                <input type="text" class="form-control daterange-single" placeholder="Tanggal Transfer" name="tgl_transfer" autocomplete="off" required="required">
                                 <div class="form-control-feedback">
-                                    <i class="icon-user text-muted"></i>
+                                    <i class=" icon-calendar3 text-muted"></i>
                                 </div>
                             </div>
-                            <?php echo $this->session->flashdata('message'); ?>
                             <div class="form-group has-feedback has-feedback-left">
                                 <?php echo form_error('photo') ?>
                                 <input type="file" class="form-control"  placeholder="Photo" name="photo" autocomplete="off" required="required">
+                                <span class="help-block">Accepted formats: gif, png, jpg, bmp. Max file size 2Mb</span>
                                 <div class="form-control-feedback">
-                                    <i class="icon-user text-muted"></i>
+                                    <i class="icon-image4 text-muted"></i>
                                 </div>
                             </div>
-                            <?php echo $this->session->flashdata('message'); ?>
                             <div class="form-group has-feedback has-feedback-left">
                                 <?php echo form_error('jmlh_transfer') ?>
-                                <input type="text" class="form-control"  placeholder="Jumlah Transfer" name="jmlh_transfer" autocomplete="off" required="required">
+                                <input type="number" class="form-control"  placeholder="Jumlah Transfer" name="jmlh_transfer" autocomplete="off" required="required">
                                 <div class="form-control-feedback">
-                                    <i class="icon-user text-muted"></i>
+                                    <small class="display-block">Rp.</small>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <input type="hidden" name="idpembayaran" value="<?php echo $idpembayaran; ?>" /> 
                                 <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>" style="display: none">
-                                <button type="submit" value="upload" class="btn bg-blue btn-block">Submit <i class="icon-arrow-right14 position-right"></i></button>
+                                <button type="submit" value="upload" class="btn bg-blue btn-block"><i class="icon-paperplane position-left"></i> Submit </button>
                             </div>
                         </div>
                     <?php echo form_close(); ?>

@@ -15,6 +15,12 @@ class Pembayaran_model extends CI_Model
         parent::__construct();
     }
 
+    //update status pembayaran
+    function updatepembayaran($id){
+        return $this->db->query("UPDATE pembayaran set status=status+1 where idpembayaran='".$this->db->escape_str($id)."'");
+    }
+
+
     // get all
     function get_all()
     {

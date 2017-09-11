@@ -124,7 +124,7 @@ class Pembayaran extends CI_Controller
 		'jmlh_transfer' => set_value('jmlh_transfer', $row->jmlh_transfer),
 		'status' => set_value('status', $row->status),
 	    );
-            $this->load->view('pembayaran/pembayaran_form', $data);
+            $this->load->view('pembayaran_read', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
             redirect(site_url('pembayaran'));
@@ -172,7 +172,6 @@ class Pembayaran extends CI_Controller
 	$this->form_validation->set_rules('kode_user', 'kode user', 'trim|required');
 	$this->form_validation->set_rules('nama_pengirim', 'nama pengirim', 'trim|required');
 	$this->form_validation->set_rules('tgl_transfer', 'tgl transfer', 'trim|required');
-	$this->form_validation->set_rules('photo', 'photo', 'trim|required');
 	$this->form_validation->set_rules('jmlh_transfer', 'jmlh transfer', 'trim|required');
 	$this->form_validation->set_rules('status', 'status', 'trim|required');
 

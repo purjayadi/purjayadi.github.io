@@ -88,7 +88,7 @@ $this->load->view('administrator/template/navbar');
 			<td><?php echo $pembayaran->status ?></td>
 			<td style="text-align:center" width="200px">
                    <ul class="icons-list ">
-                     <li><a href="<?php echo site_url() ?>pembayaran/read/<?php echo $pembayaran->idpembayaran;?>" class="btn btn-success btn-xs" data-popup="tooltip" title="Detail" ><i class="icon-search4 text-white"></i></a></li>
+                     <li><a href="<?php echo site_url() ?>pembayaran/update/<?php echo $pembayaran->idpembayaran;?>" class="btn btn-success btn-xs" data-popup="tooltip" title="Detail" ><i class="icon-search4 text-white"></i></a></li>
                      <li><a href="<?php echo site_url() ?>pembayaran/delete/<?php echo $pembayaran->idpembayaran;?>" class="btn btn-danger btn-xs" data-popup="tooltip" title="Hapus"   onClick='return confirm("Anda yakin ingin menghapus data ini?")'><i class="icon-bin text-white" ></i></a></li>
                   </ul>
             </td>
