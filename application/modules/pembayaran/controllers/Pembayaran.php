@@ -158,7 +158,7 @@ class Pembayaran extends CI_Controller
 
         if ($row) {
             $this->Pembayaran_model->delete($id);
-            $this->session->set_flashdata('message', 'Delete Record Success');
+            $this->session->set_flashdata("message", "<div class=\"alert alert-danger alert-styled-left alert-arrow-left alert-component\" id=\"alert\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\"><span>×</span><span class=\"sr-only\">Close</span></button>Record Deleted</div>");
             redirect(site_url('pembayaran'));
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');

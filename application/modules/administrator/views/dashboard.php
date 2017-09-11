@@ -18,12 +18,19 @@ $this->load->view('template/navbar');
 
 			<!-- Main content -->
 			<div class="content-wrapper">
-
+				<br>
+		        <div class="page-header">
+		            <div class="breadcrumb-line breadcrumb-line-component">
+		                        <ul class="breadcrumb">
+		                            <li class="active"><a href="<?php echo base_url('administrator')?>"><i class="icon-home5 position-left"></i>Dashboard</a></li>
+		                        </ul>
+		            </div>
+		        </div>
+		        <br>
 				<!-- Content area -->
 				<div class="content">
 
 					<!-- Dashboard content -->
-					<div class="row">
 							<!-- Quick stats boxes -->
 							<div class="row">
 								<div class="col-lg-4">

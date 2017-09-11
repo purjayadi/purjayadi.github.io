@@ -48,6 +48,7 @@ class Konfirmasi extends CI_Controller
                     'nama_pengirim'=>$this->db->escape_str($this->input->post('nama_pengirim', TRUE)),
                     'tgl_transfer'=>$this->db->escape_str($this->input->post('tgl_transfer', TRUE)),
                     'jmlh_transfer'=>$this->db->escape_str($this->input->post('jmlh_transfer', TRUE)),
+                    'status' => 'Unpaid',
                     'photo'=>$hasil['file_name'],
              );
             }else{

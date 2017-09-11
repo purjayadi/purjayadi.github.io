@@ -85,7 +85,12 @@ $this->load->view('administrator/template/navbar');
 			<td><?php echo $pembayaran->kode_user ?></td>
 			<td><?php echo $pembayaran->nama_pengirim ?></td>
 			<td><?php echo $pembayaran->tgl_transfer ?></td>
-			<td><?php echo $pembayaran->status ?></td>
+			<td><?php if ($pembayaran->status == 'Paid')
+            echo'<span class="label label-success">'.$pembayaran->status.'</span>';
+            else
+            echo'<span class="label label-warning">'.$pembayaran->status.'</span>'
+            ?>
+            </td>
 			<td style="text-align:center" width="200px">
                    <ul class="icons-list ">
                      <li><a href="<?php echo site_url() ?>pembayaran/update/<?php echo $pembayaran->idpembayaran;?>" class="btn btn-success btn-xs" data-popup="tooltip" title="Detail" ><i class="icon-search4 text-white"></i></a></li>

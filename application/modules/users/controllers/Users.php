@@ -48,7 +48,11 @@ class Users extends MX_Controller
             $row[] = $rows->created_on;
             $row[] = $rows->last_login;
             $row[] = $rows->jatuh_tempo;
-            $row[] = $rows->active;
+            $row[] = "<?php if ($rows->active == '1')'.
+            echo".'<span class="label label-success">'.$rows->active.'</span>'.";
+            else
+            echo".'<span class="label label-warning">'.$rows->active.'</span>'."
+            ?>";
 
             $row[] = '<ul class="icons-list">
                                             <li class="dropdown">
