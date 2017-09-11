@@ -38,7 +38,7 @@
 									<a href=""><i class="icon-users"></i> <span>Manage User</span></a>
 									<ul>
 										<li class="<?=($this->uri->segment(1)==='users')?'active':''?>"><a href="<?php echo base_url('users')?>">Data User</a></li>
-										<li class="<?=($this->uri->segment(2)==='alfa')?'active':''?>"><a href="#">Payment</a></li>
+										<li class="<?=($this->uri->segment(1)==='pembayaran')?'active':''?>"><a href="<?php echo('pembayaran')?>">Payment</a></li>
 									</ul>
 								</li>
 								<li class="<?=($this->uri->segment(1)==='subdomain')?'active':''?>"><a href="<?php echo base_url('subdomain')?>"><i class="icon-earth"></i> <span>Setup Subdomain</span></a></li>
