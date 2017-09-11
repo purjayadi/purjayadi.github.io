@@ -142,13 +142,12 @@ class Pembayaran extends CI_Controller
 		'kode_user' => $this->input->post('kode_user',TRUE),
 		'nama_pengirim' => $this->input->post('nama_pengirim',TRUE),
 		'tgl_transfer' => $this->input->post('tgl_transfer',TRUE),
-		'photo' => $this->input->post('photo',TRUE),
 		'jmlh_transfer' => $this->input->post('jmlh_transfer',TRUE),
 		'status' => $this->input->post('status',TRUE),
 	    );
 
             $this->Pembayaran_model->update($this->input->post('idpembayaran', TRUE), $data);
-            $this->session->set_flashdata('message', 'Update Record Success');
+            $this->session->set_flashdata("message", "<div class=\"alert alert-info alert-styled-left alert-arrow-left alert-component\" id=\"alert\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\"><span>×</span><span class=\"sr-only\">Close</span></button>Validasi Berhasil</div>");
             redirect(site_url('pembayaran'));
         }
     }

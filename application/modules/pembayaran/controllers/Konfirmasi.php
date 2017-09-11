@@ -35,7 +35,7 @@ class Konfirmasi extends CI_Controller
         if ($this->form_validation->run() == FALSE) {
             $this->index();
         } else {
-        $config['upload_path'] = './assets/images/';
+        $config['upload_path'] = './assets/images/pembayaran/';
         $config['allowed_types'] = 'jpg|png|gif|bmp';
         $config['max_size'] = '2000';
         $this->load->library('upload', $config);
