@@ -13,7 +13,16 @@ $this->load->view('administrator/template/navbar');
         ?>
             <!-- Main content -->
         <div class="content-wrapper">
-
+        <br>
+        <div class="page-header">
+            <div class="breadcrumb-line breadcrumb-line-component">
+                        <ul class="breadcrumb">
+                            <li><a href="index.html"><i class="icon-users position-left"></i> Manage User</a></li>
+                            <li class="active">Data Users</li>
+                        </ul>
+            </div>
+        </div>
+        <br>
         <div class="content">
         <a href="<?php echo base_url('users/create')?>" class="btn btn-success" ><i class=" icon-user-plus"></i> Tambah Data</a>
         <button class="btn btn-default" onclick="reload_table()"><i class=" icon-sync"></i> Reload</button>

@@ -13,16 +13,24 @@ $this->load->view('administrator/template/navbar');
         ?>
             <!-- Main content -->
         <div class="content-wrapper">
-
+        <br>
+        <div class="page-header">
+            <div class="breadcrumb-line breadcrumb-line-component">
+                        <ul class="breadcrumb">
+                            <li><a href="index.html"><i class="icon-users position-left"></i> Manage User</a></li>
+                            <li class="active">Payment</li>
+                        </ul>
+            </div>
+        </div>
+        <br>
         <div class="content">
-        <h2 style="margin-top:0px">Pembayaran List</h2>
         <div class="row" style="margin-bottom: 10px">
             <div class="col-md-4">
                 
             </div>
             <div class="col-md-4 text-center">
                 <div style="margin-top: 8px" id="message">
-                    <?php echo $this->session->userdata('message') <> '' ? $this->session->userdata('message') : ''; ?>
+                    
                 </div>
             </div>
             <div class="col-md-1 text-right">
@@ -48,6 +56,7 @@ $this->load->view('administrator/template/navbar');
         </div>
         <div class="panel panel-flat">
             <div class="panel-heading">
+                <h5 class="panel-title">List pembayaran</h5>
                             <div class="heading-elements">
                                 <ul class="icons-list">
                                     <li><a data-action="collapse"></a></li>
@@ -63,8 +72,6 @@ $this->load->view('administrator/template/navbar');
     		<th>Kode User</th>
     		<th>Nama Pengirim</th>
     		<th>Tgl Transfer</th>
-    		<th>Photo</th>
-    		<th>Jmlh Transfer</th>
     		<th>Status</th>
     		<th>Action</th>
         </tr>
@@ -78,18 +85,13 @@ $this->load->view('administrator/template/navbar');
 			<td><?php echo $pembayaran->kode_user ?></td>
 			<td><?php echo $pembayaran->nama_pengirim ?></td>
 			<td><?php echo $pembayaran->tgl_transfer ?></td>
-			<td><?php echo $pembayaran->photo ?></td>
-			<td><?php echo $pembayaran->jmlh_transfer ?></td>
 			<td><?php echo $pembayaran->status ?></td>
 			<td style="text-align:center" width="200px">
-				<?php 
-				echo anchor(site_url('pembayaran/read/'.$pembayaran->idpembayaran),'Read'); 
-				echo ' | '; 
-				echo anchor(site_url('pembayaran/update/'.$pembayaran->idpembayaran),'Update'); 
-				echo ' | '; 
-				echo anchor(site_url('pembayaran/delete/'.$pembayaran->idpembayaran),'Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"'); 
-				?>
-			</td>
+                   <ul class="icons-list ">
+                     <li><a href="<?php echo site_url() ?>pembayaran/read/<?php echo $pembayaran->idpembayaran;?>" class="btn btn-success btn-xs" data-popup="tooltip" title="Detail" ><i class="icon-search4 text-white"></i></a></li>
+                     <li><a href="<?php echo site_url() ?>pembayaran/delete/<?php echo $pembayaran->idpembayaran;?>" class="btn btn-danger btn-xs" data-popup="tooltip" title="Hapus"   onClick='return confirm("Anda yakin ingin menghapus data ini?")'><i class="icon-bin text-white" ></i></a></li>
+                  </ul>
+            </td>
 		</tr>
                 <?php
             }
