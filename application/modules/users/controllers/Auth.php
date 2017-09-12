@@ -93,18 +93,7 @@ class Auth extends CI_Controller {
 
 */
 //akhir untuk captcha
-		//$data = array('username' => $this->db->escape_str($this->input->post('username', TRUE)),
-		//		'password' => hash("sha512", md5($this->db->escape_str($this->input->post('password', TRUE))))
-			//);
-		/*$username =  $this->security->xss_clean($this->input->post('username', TRUE));
-		$password = hash("sha512", md5($this->security->xss_clean($this->input->post('password', TRUE))));
-		//$this->load->model('mlogin'); // load model_user
-		//$hasil = $this->modeluser->cek_user($data);
-		$cek = $this->db->query("SELECT * FROM table_user where username='".$this->db->escape_str($username)."' AND password='".$this->db->escape_str($password)."'");
-		    if ($cek->num_rows() > 0)  {
-			foreach ($cek->result() as $sess) {
 
-*/
 	if ($this->form_validation->run() == true)
 		{
 			
@@ -330,7 +319,7 @@ class Auth extends CI_Controller {
 			   if($this->ion_auth->update($user->id, $data))
 			    {
 			    	// redirect them back to the admin page if admin, or to the base url if non admin
-				    $this->session->set_flashdata('message', $this->ion_auth->messages() );
+				    $this->session->set_flashdata('message', "<div class=\"alert alert-info alert-styled-left alert-arrow-left alert-component\" id=\"alert\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\"><span>×</span><span class=\"sr-only\">Close</span></button>Account Information Successfully Updated</div>");
 				    if ($this->ion_auth->is_admin())
 					{
 						redirect('users', 'refresh');

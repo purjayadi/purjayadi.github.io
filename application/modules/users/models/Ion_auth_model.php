@@ -473,7 +473,7 @@ class Ion_auth_model extends CI_Model
 
 			$data = array(
 			    'activation_code' => NULL,
-			    'active'          => 1
+			    'active'          => 'Active'
 			);
 
 			$this->trigger_events('extra_where');
@@ -483,7 +483,7 @@ class Ion_auth_model extends CI_Model
 		{
 			$data = array(
 			    'activation_code' => NULL,
-			    'active'          => 1
+			    'active'          => 'Active'
 			);
 
 
@@ -535,7 +535,7 @@ class Ion_auth_model extends CI_Model
 
 		$data = array(
 		    'activation_code' => $activation_code,
-		    'active'          => 0
+		    'active'          => 'Suspend'
 		);
 
 		$this->trigger_events('extra_where');
@@ -917,7 +917,7 @@ class Ion_auth_model extends CI_Model
 		    'email'      => $email,
 		    'ip_address' => $ip_address,
 		    'created_on' => date('Y-m-d'),
-		    'active'     => ($manual_activation === false ? 1 : 0)
+		    'active'     => ($manual_activation === false ? Active : Suspend)
 		);
 
 		if ($this->store_salt)
@@ -973,7 +973,7 @@ class Ion_auth_model extends CI_Model
 
 		$this->trigger_events('extra_where');
 
-		$query = $this->db->select($this->identity_column . ', email, id, password, active, last_login')
+		$query = $this->db->select($this->identity_column . ', email, id, password, active, last_login, alamat, company')
 		                  ->where($this->identity_column, $identity)
 		                  ->limit(1)
 		    			  ->order_by('id', 'desc')
@@ -998,7 +998,7 @@ class Ion_auth_model extends CI_Model
 
 			if ($password === TRUE)
 			{
-				if ($user->active == 0)
+				if ($user->active == 'Suspend')
 				{
 					$this->trigger_events('post_login_unsuccessful');
 					$this->set_error('login_unsuccessful_not_active');
@@ -1007,7 +1007,6 @@ class Ion_auth_model extends CI_Model
 				}
 
 				$this->set_session($user);
-
 				$this->update_last_login($user->id);
 
 				$this->clear_login_attempts($identity);
@@ -1841,6 +1840,8 @@ class Ion_auth_model extends CI_Model
 		    'identity'             => $user->{$this->identity_column},
 		    $this->identity_column             => $user->{$this->identity_column},
 		    'email'                => $user->email,
+		    'alamat'               => $user->alamat,
+		    'company'              => $user->company,
 		    'user_id'              => $user->id, //everyone likes to overwrite id so we'll use user_id
 		    'old_last_login'       => $user->last_login,
 		    'last_check'           => time(),
