@@ -15,17 +15,24 @@ $this->load->view('administrator/template/navbar');
             ?>
             <!-- Main content -->
             <div class="content-wrapper">
+                <br>
+            <div class="page-header">
+                <div class="breadcrumb-line breadcrumb-line-component">
+                            <ul class="breadcrumb">
+                                <li class="active"><i class="icon-earth position-left"></i> Setup Subdomain</li>
+                            </ul>
+                </div>
+            </div>
+            <br>
                 <!-- Content area -->
             <div class="content">
                     <!-- Dashboard content -->
-            <h2 style="margin-top:0px">Subdomain List</h2>
             <div class="row" style="margin-bottom: 10px">
             <div class="col-md-4">
                 <?php echo anchor(site_url('subdomain/create'),'Create', 'class="btn btn-success"'); ?>
             </div>
             <div class="col-md-4 text-center">
                 <div style="margin-top: 8px" id="message">
-                    <?php echo $this->session->userdata('message') <> '' ? $this->session->userdata('message') : ''; ?>
                 </div>
             </div>
             <div class="col-md-1 text-right">
@@ -50,6 +57,16 @@ $this->load->view('administrator/template/navbar');
             </div>
         </div>
         <div class="panel panel-flat">
+            <div class="panel-heading">
+                <h5 class="panel-title">List subdomain</h5>
+                            <div class="heading-elements">
+                                <ul class="icons-list">
+                                    <li><a data-action="collapse"></a></li>
+                                    <li><a data-action="reload"></a></li>
+                                </ul>
+                            </div>
+                        </div>
+        <?php echo $this->session->flashdata('message'); ?> 
         <div class="table-responsive table-hover datatable-responsive table-striped">
         <table class="table table-sm">
         <thead>

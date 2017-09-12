@@ -15,6 +15,7 @@ class Subdomain extends CI_Controller
                 redirect('login','refresh');
             }
         }
+        $this->load->model('users/modeluser');
         $this->load->model('Subdomain_model');
         $this->load->model('users/Modeluser');
         $this->load->library('form_validation');
@@ -76,6 +77,7 @@ class Subdomain extends CI_Controller
         'subdomain' => set_value('subdomain'),
         'username' => set_value('username'),
     );
+        $data['users'] = $this->Modeluser->get();
         $this->load->view('subdomain/subdomain_form', $data);
     }
     
@@ -109,6 +111,7 @@ class Subdomain extends CI_Controller
         'subdomain' => set_value('subdomain', $row->subdomain),
         'username' => set_value('username', $row->username),
         );
+            $data['users'] = $this->Modeluser->get();
             $this->load->view('subdomain/subdomain_form', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');

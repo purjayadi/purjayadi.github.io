@@ -69,14 +69,14 @@ class Pendaftaran extends CI_Controller
         $data = array(
             'button' => 'Create',
             'action' => site_url('pendaftaran/create_action'),
-	    'id_pendaftaran' => set_value('id_pendaftaran'),
-	    'nama_lengkap' => set_value('nama_lengkap'),
-	    'email' => set_value('email'),
-	    'no_telp' => set_value('no_telp'),
-	    'nama_subdomain' => set_value('nama_subdomain'),
-	    'paket_layanan' => set_value('paket_layanan'),
-	    'kota' => set_value('kota'),
-	    'tgl_entry' => set_value('tgl_entry'),
+    	    'id_pendaftaran' => set_value('id_pendaftaran'),
+    	    'nama_lengkap' => set_value('nama_lengkap'),
+    	    'email' => set_value('email'),
+    	    'no_telp' => set_value('no_telp'),
+    	    'nama_subdomain' => set_value('nama_subdomain'),
+    	    'paket_layanan' => set_value('paket_layanan'),
+    	    'kota' => set_value('kota'),
+    	    'tgl_entry' => set_value('tgl_entry'),
 	);
         $this->load->view('pendaftaran/pendaftaran_form', $data);
     }
@@ -89,13 +89,13 @@ class Pendaftaran extends CI_Controller
             $this->create();
         } else {
             $data = array(
-		'nama_lengkap' => $this->input->post('nama_lengkap',TRUE),
-		'email' => $this->input->post('email',TRUE),
-		'no_telp' => $this->input->post('no_telp',TRUE),
-		'nama_subdomain' => $this->input->post('nama_subdomain',TRUE),
-		'paket_layanan' => $this->input->post('paket_layanan',TRUE),
-		'kota' => $this->input->post('kota',TRUE),
-		'tgl_entry' => $this->input->post('tgl_entry',TRUE),
+    		'nama_lengkap' => $this->input->post('nama_lengkap',TRUE),
+    		'email' => $this->input->post('email',TRUE),
+    		'no_telp' => $this->input->post('no_telp',TRUE),
+    		'nama_subdomain' => $this->input->post('nama_subdomain',TRUE),
+    		'paket_layanan' => $this->input->post('paket_layanan',TRUE),
+    		'kota' => $this->input->post('kota',TRUE),
+    		'tgl_entry' => $this->input->post('tgl_entry',TRUE),
 	    );
 
             $this->Pendaftaran_model->insert($data);
@@ -112,14 +112,14 @@ class Pendaftaran extends CI_Controller
             $data = array(
                 'button' => 'Update',
                 'action' => site_url('pendaftaran/update_action'),
-		'id_pendaftaran' => set_value('id_pendaftaran', $row->id_pendaftaran),
-		'nama_lengkap' => set_value('nama_lengkap', $row->nama_lengkap),
-		'email' => set_value('email', $row->email),
-		'no_telp' => set_value('no_telp', $row->no_telp),
-		'nama_subdomain' => set_value('nama_subdomain', $row->nama_subdomain),
-		'paket_layanan' => set_value('paket_layanan', $row->paket_layanan),
-		'kota' => set_value('kota', $row->kota),
-		'tgl_entry' => set_value('tgl_entry', $row->tgl_entry),
+        		'id_pendaftaran' => set_value('id_pendaftaran', $row->id_pendaftaran),
+        		'nama_lengkap' => set_value('nama_lengkap', $row->nama_lengkap),
+        		'email' => set_value('email', $row->email),
+        		'no_telp' => set_value('no_telp', $row->no_telp),
+        		'nama_subdomain' => set_value('nama_subdomain', $row->nama_subdomain),
+        		'paket_layanan' => set_value('paket_layanan', $row->paket_layanan),
+        		'kota' => set_value('kota', $row->kota),
+        		'tgl_entry' => set_value('tgl_entry', $row->tgl_entry),
 	    );
             $this->load->view('pendaftaran/pendaftaran_form', $data);
         } else {
@@ -136,13 +136,13 @@ class Pendaftaran extends CI_Controller
             $this->update($this->input->post('id_pendaftaran', TRUE));
         } else {
             $data = array(
-		'nama_lengkap' => $this->input->post('nama_lengkap',TRUE),
-		'email' => $this->input->post('email',TRUE),
-		'no_telp' => $this->input->post('no_telp',TRUE),
-		'nama_subdomain' => $this->input->post('nama_subdomain',TRUE),
-		'paket_layanan' => $this->input->post('paket_layanan',TRUE),
-		'kota' => $this->input->post('kota',TRUE),
-		'tgl_entry' => $this->input->post('tgl_entry',TRUE),
+    		'nama_lengkap' => $this->input->post('nama_lengkap',TRUE),
+    		'email' => $this->input->post('email',TRUE),
+    		'no_telp' => $this->input->post('no_telp',TRUE),
+    		'nama_subdomain' => $this->input->post('nama_subdomain',TRUE),
+    		'paket_layanan' => $this->input->post('paket_layanan',TRUE),
+    		'kota' => $this->input->post('kota',TRUE),
+    		'tgl_entry' => $this->input->post('tgl_entry',TRUE),
 	    );
 
             $this->Pendaftaran_model->update($this->input->post('id_pendaftaran', TRUE), $data);

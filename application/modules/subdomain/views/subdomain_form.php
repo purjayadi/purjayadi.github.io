@@ -27,11 +27,10 @@ $this->load->view('administrator/template/navbar');
         </div>
 	    <div class="form-group">
            <label>Select User</label>
-           <select name="username" id="username" class="form-control select-search" data-placeholder="Select User..." required="required" />
-           <option></option>
+           <select name="username" id="username" class="form-control bootstrap-select" data-live-search="true" data-placeholder="Select User..." required="required" />
+           <option value=""></option>
                 <?php 
-                $users=$this->db->query("select * from users");
-                foreach($users->result() as $value){
+                  foreach($users->result() as $value){
                   $selected= '';
                   if($username == $value->username){
                     $selected = 'selected="selected"';
