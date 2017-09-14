@@ -6,18 +6,19 @@
 					<div class="sidebar-user">
 						<div class="category-content">
 							<div class="media">
-								<a href="#" class="media-left"><img src="<?php echo base_url('assetss/images/placeholder.jpg')?>" class="img-circle img-sm" alt=""></a>
+								<a href="#" class="media-left"><img src="<?php echo base_url('assets/images/user.png')?>" class="img-circle img-sm" alt=""></a>
 								<div class="media-body">
-									<span class="media-heading text-semibold"><?php echo $judul_menu; ?></span>
+									<span class="media-heading text-semibold"></i> <?php echo $this->session->userdata('company'); ?></span>
 									<div class="text-size-mini text-muted">
-										<i class="icon-pin text-size-small"></i> &nbsp; <?php echo $nama_jln; ?>
+										<i class="icon-pin text-size-small"></i>
+										<?php echo $this->session->userdata('alamat'); ?></span>
 									</div>
 								</div>
 
 								<div class="media-right media-middle">
 									<ul class="icons-list">
 										<li>
-											<a href="#"><i class="icon-cog3"></i></a>
+											<a href="<?php echo base_url('users/auth/change_password')?>"><i class="icon-cog3"></i></a>
 										</li>
 									</ul>
 								</div>
@@ -60,13 +61,13 @@
 										<li><a href="#">BODY PERPAGE</a></li>
 									</ul>
 								</li>
-								<li>
+								<li <?php echo ($aktif == 'Premium')?'class="active"':"";?>>
 									<a href="#"><i class="glyphicon glyphicon-list"></i> <span>PREMIUM</span></a>
 									<ul>
-										<li><a href="#">KEYWORD AWALAN</a></li>
-										<li><a href="#">KEYWORD AKHIRAN</a></li>
-										<li><a href="#">KEYWORD KOTA</a></li>
-										<li><a href="#">FB PIXEL</a></li>
+										<li><a href="<?php echo base_url('premium/keywordawalan')?>">KEYWORD AWALAN</a></li>
+										<li><a href="<?php echo base_url('premium/keywordahiran')?>">KEYWORD AKHIRAN</a></li>
+										<li><a href="<?php echo base_url('premium/keywordkota')?>">KEYWORD KOTA</a></li>
+										<li><a href="<?php echo base_url('premium/fbpixel')?>">FB PIXEL</a></li>
 										<li><a href="#">WHATS APP ORDER</a></li>
 										<li><a href="#">CLOACKER</a></li>
 										<li><a href="#">EKSTERNAL CLOACKER</a></li>
@@ -90,6 +91,7 @@
 
 				</div>
 			</div>
+		
 			<!-- /main sidebar -->
 
 

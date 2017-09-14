@@ -75,11 +75,11 @@ $this->load->view('administrator/template/navbar');
 	     <a href="<?php echo site_url('users') ?>" class="btn btn-danger"><i class=" icon- icon-cancel-circle2"></i> Batal</a>
               <button type="submit" value="upload" class="btn btn-success"><i class="icon-floppy-disk"></i> Tambah</button> 
         </div>
-        </div>
-        </div>
-    </div>
     
 	<?php echo form_close(); ?>
+</div>
+</div>
+</div>
 <?php
 $this->load->view('administrator/template/footer');
 ?>

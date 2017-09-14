@@ -16,4 +16,12 @@ class Mainmodel extends CI_Model
         return $this->db->get('produk');
     }
 
+    function waorder()
+    {
+    	# code...
+    	$this->db->order_by('idwa_order', 'DESC');
+    	$this->db->where('username', $this->session->identity);
+    	return $this->db->get('wa_order');
+    }
+
 }
