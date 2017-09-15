@@ -9,6 +9,7 @@ class Wa_order_model extends CI_Model
     public $table = 'wa_order';
     public $id = 'idwa_order';
     public $order = 'DESC';
+    public $url_redirect = 'url_redirect';
 
     function __construct()
     {
@@ -87,8 +88,8 @@ class Wa_order_model extends CI_Model
            $kode = 1;    
           }
           $kodemax = str_pad($kode, 4, "0", STR_PAD_LEFT); // angka 4 menunjukkan jumlah digit angka 0
-          $kodejadi = "WA-01-".$kodemax;    // hasilnya ODJ-9921-0001 dst.
-          return $kodejadi;   
+          $kodejadi = $kodemax;    // hasilnya ODJ-9921-0001 dst.
+          return $kodejadi;  
     }
   
 

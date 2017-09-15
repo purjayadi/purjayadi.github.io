@@ -8,13 +8,6 @@ class Orderwa extends CI_Controller
 	
 	function __construct() {
        parent::__construct();
-      if (!$this->ion_auth->logged_in()) {//cek login ga?
-            redirect('login','refresh');
-        }else{
-            if (!$this->ion_auth->in_group('members')) {//cek admin ga?
-                redirect('login','refresh');
-            }
-        }
        $this->load->model('administrator/Mainmodel');
     }
 
@@ -23,10 +16,25 @@ class Orderwa extends CI_Controller
     	
     }
 
-    public function detail()
+    public function detail($id)
     {
         # code...
-        $this->load->view('detail');
+        $this->load->model('Wa_order_model');
+        $row = $this->Wa_order_model->get_by_id($id);
+        if ($row) {
+            $data = array(
+                        'idwa_order' => $row->idwa_order,
+                        'no_wa' => $row->no_wa,
+                        'text_wa' => $row->text_wa,
+                        'url_redirect' => $row->url_redirect,
+                        'url_wa' => $row->url_wa,
+                        'username' => $row->username,
+                        ); 
+            $this->load->view('detail', $data);
+        } else {
+            $this->session->set_flashdata('message', 'Record Not Found');
+            redirect(site_url('panelIMS/kategori'));
+        }
     }
 
     

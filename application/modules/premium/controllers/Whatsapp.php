@@ -51,6 +51,7 @@ class Whatsapp extends CI_Controller
         $data['title']       ='Admin Panel';
         $data['judul_menu']  ='Braja Marketindo';
         $data['nama_jln']    ='Jl.Lotus Timur, Jakasetia, Jawa Barat';
+        $data['kodeunik'] = $this->Wa_order_model->buat_kode(); 
         $this->load->view('whatsapp/wa_order_list', $data);
     }
 
@@ -85,9 +86,10 @@ class Whatsapp extends CI_Controller
             $this->create();
         } else {
             $data = array(
+        'idwa_order' => $this->input->post('idwa_order',TRUE),
 		'no_wa' => $this->input->post('no_wa',TRUE),
 		'text_wa' => $this->input->post('text_wa',TRUE),
-		'url_redirect' => base_url('orderwa/') .$this->input->post('url_redirect',TRUE).'',
+		'url_redirect' => base_url('orderwa/detail/') .$this->input->post('url_redirect',TRUE).'',
 		'url_wa' => 'https://api.whatsapp.com/send?text='.$this->input->post('text_wa', TRUE).'&phone='.$this->input->post('no_wa', TRUE).'',
 		'username' => $this->session->identity,
 	    );
@@ -117,7 +119,7 @@ class Whatsapp extends CI_Controller
             $data['title']       ='Admin Panel';
             $data['judul_menu']  ='Braja Marketindo';
             $data['nama_jln']    ='Jl.Lotus Timur, Jakasetia, Jawa Barat';
-            $data['kodeunik'] = $this->Wa_order_model->buat_kode(); 
+            $data['kodeunik'] = set_value('idwa_order', $row->idwa_order);
             $this->load->view('whatsapp/wa_order_form', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
@@ -135,7 +137,6 @@ class Whatsapp extends CI_Controller
             $data = array(
 		'no_wa' => $this->input->post('no_wa',TRUE),
 		'text_wa' => $this->input->post('text_wa',TRUE),
-		'url_redirect' => base_url('orderwa/') .$this->input->post('url_redirect',TRUE).'',
         'url_wa' => 'https://api.whatsapp.com/send?text='.$this->input->post('text_wa', TRUE).'&phone='.$this->input->post('no_wa', TRUE).'',
 		'username' => $this->session->identity,
 	    );

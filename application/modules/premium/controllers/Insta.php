@@ -3,7 +3,7 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Fbpixel extends CI_Controller
+class Insta extends CI_Controller
 {
     function __construct()
     {
@@ -15,7 +15,7 @@ class Fbpixel extends CI_Controller
                 redirect('login','refresh');
             }
         }
-        $this->load->model('Fb_pixel_model');
+        $this->load->model('Template_insta_model');
         $this->load->library('form_validation');
     }
 
@@ -25,49 +25,45 @@ class Fbpixel extends CI_Controller
         $start = intval($this->input->get('start'));
         
         if ($q <> '') {
-            $config['base_url'] = base_url() . 'premium/fbpixel/index.html?q=' . urlencode($q);
-            $config['first_url'] = base_url() . 'premium/fbpixel/index.html?q=' . urlencode($q);
+            $config['base_url'] = base_url() . 'premium/insta/index.html?q=' . urlencode($q);
+            $config['first_url'] = base_url() . 'premium/insta/index.html?q=' . urlencode($q);
         } else {
-            $config['base_url'] = base_url() . 'premium/fbpixel/index.html';
-            $config['first_url'] = base_url() . 'premium/fbpixel/index.html';
+            $config['base_url'] = base_url() . 'premium/insta/index.html';
+            $config['first_url'] = base_url() . 'premium/insta/index.html';
         }
 
         $config['per_page'] = 10;
         $config['page_query_string'] = TRUE;
-        $config['total_rows'] = $this->Fb_pixel_model->total_rows($q);
-        $fbpixel = $this->Fb_pixel_model->get_limit_data($config['per_page'], $start, $q);
+        $config['total_rows'] = $this->Template_insta_model->total_rows($q);
+        $insta = $this->Template_insta_model->get_limit_data($config['per_page'], $start, $q);
 
         $this->load->library('pagination');
         $this->pagination->initialize($config);
 
         $data = array(
-            'fbpixel_data' => $fbpixel,
+            'insta_data' => $insta,
             'q' => $q,
             'pagination' => $this->pagination->create_links(),
             'total_rows' => $config['total_rows'],
             'start' => $start,
         );
-        $data['aktif']      ='Premium';
-        $data['title']       ='Admin Panel';
-        $data['judul_menu']  ='Braja Marketindo';
-        $data['nama_jln']    ='Jl.Lotus Timur, Jakasetia, Jawa Barat';
-        $this->load->view('fbpixel/fb_pixel_list', $data);
+        $this->load->view('insta/template_insta_list', $data);
     }
 
+   
     public function create() 
     {
         $data = array(
             'button' => 'Create',
-            'action' => site_url('premium/fbpixel/create_action'),
-	    'idkonten' => set_value('idkonten'),
-	    'konten' => set_value('konten'),
-	    'username' => set_value('username'),
+            'action' => site_url('premium/insta/create_action'),
+	    'idtemplate_insta' => set_value('idtemplate_insta'),
+	    'profile_insta' => set_value('profile_insta'),
 	);
         $data['aktif']      ='Premium';
         $data['title']       ='Admin Panel';
         $data['judul_menu']  ='Braja Marketindo';
         $data['nama_jln']    ='Jl.Lotus Timur, Jakasetia, Jawa Barat';
-        $this->load->view('fbpixel/fb_pixel_form', $data);
+        $this->load->view('insta/template_insta_form', $data);
     }
     
     public function create_action() 
@@ -78,36 +74,34 @@ class Fbpixel extends CI_Controller
             $this->create();
         } else {
             $data = array(
-		'konten' => $this->input->post('konten'),
-		'username' => $this->session->identity,
+		'profile_insta' => $this->input->post('profile_insta',TRUE),
 	    );
 
-            $this->Fb_pixel_model->insert($data);
+            $this->Template_insta_model->insert($data);
             $this->session->set_flashdata('message', 'Create Record Success');
-            redirect(site_url('premium/fbpixel'));
+            redirect(site_url('insta'));
         }
     }
     
     public function update($id) 
     {
-        $row = $this->Fb_pixel_model->get_by_id($id);
+        $row = $this->Template_insta_model->get_by_id($id);
 
         if ($row) {
             $data = array(
                 'button' => 'Update',
-                'action' => site_url('premium/fbpixel/update_action'),
-		'idkonten' => set_value('idkonten', $row->idkonten),
-		'konten' => set_value('konten', $row->konten),
-		'username' => set_value('username', $row->username),
+                'action' => site_url('premium/insta/update_action'),
+		'idtemplate_insta' => set_value('idtemplate_insta', $row->idtemplate_insta),
+		'profile_insta' => set_value('profile_insta', $row->profile_insta),
 	    );
             $data['aktif']      ='Premium';
             $data['title']       ='Admin Panel';
             $data['judul_menu']  ='Braja Marketindo';
             $data['nama_jln']    ='Jl.Lotus Timur, Jakasetia, Jawa Barat';
-            $this->load->view('fbpixel/fb_pixel_form', $data);
+            $this->load->view('insta/template_insta_form', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
-            redirect(site_url('premium/fbpixel'));
+            redirect(site_url('insta'));
         }
     }
     
@@ -116,31 +110,44 @@ class Fbpixel extends CI_Controller
         $this->_rules();
 
         if ($this->form_validation->run() == FALSE) {
-            $this->update($this->input->post('idkonten', TRUE));
+            $this->update($this->input->post('idtemplate_insta', TRUE));
         } else {
             $data = array(
-		'konten' => $this->input->post('konten'),
-		'username' => $this->session->identity,
+		'profile_insta' => $this->input->post('profile_insta',TRUE),
 	    );
 
-            $this->Fb_pixel_model->update($this->input->post('idkonten', TRUE), $data);
+            $this->Template_insta_model->update($this->input->post('idtemplate_insta', TRUE), $data);
             $this->session->set_flashdata('message', 'Update Record Success');
-            redirect(site_url('premium/fbpixel'));
+            redirect(site_url('insta'));
         }
     }
     
+    public function delete($id) 
+    {
+        $row = $this->Template_insta_model->get_by_id($id);
+
+        if ($row) {
+            $this->Template_insta_model->delete($id);
+            $this->session->set_flashdata('message', 'Delete Record Success');
+            redirect(site_url('insta'));
+        } else {
+            $this->session->set_flashdata('message', 'Record Not Found');
+            redirect(site_url('insta'));
+        }
+    }
+
     public function _rules() 
     {
-	$this->form_validation->set_rules('konten', 'konten', 'trim|required');
+	$this->form_validation->set_rules('profile_insta', 'profile insta', 'trim|required');
 
-	$this->form_validation->set_rules('idkonten', 'idkonten', 'trim');
+	$this->form_validation->set_rules('idtemplate_insta', 'idtemplate_insta', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
     }
 
 }
 
-/* End of file Fbpixel.php */
-/* Location: ./application/controllers/Fbpixel.php */
+/* End of file Insta.php */
+/* Location: ./application/controllers/Insta.php */
 /* Please DO NOT modify this information : */
-/* Generated by Harviacode Codeigniter CRUD Generator 2017-09-13 07:40:59 */
+/* Generated by Harviacode Codeigniter CRUD Generator 2017-09-15 08:17:06 */
 /* http://harviacode.com */
