@@ -47,6 +47,10 @@ class Insta extends CI_Controller
             'total_rows' => $config['total_rows'],
             'start' => $start,
         );
+        $data['aktif']      ='Premium';
+        $data['title']       ='Admin Panel';
+        $data['judul_menu']  ='Braja Marketindo';
+        $data['nama_jln']    ='Jl.Lotus Timur, Jakasetia, Jawa Barat';
         $this->load->view('insta/template_insta_list', $data);
     }
 

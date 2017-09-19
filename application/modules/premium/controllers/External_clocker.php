@@ -70,6 +70,7 @@ class External_clocker extends CI_Controller
         $data['title']       ='Admin Panel';
         $data['judul_menu']  ='Braja Marketindo';
         $data['nama_jln']    ='Jl.Lotus Timur, Jakasetia, Jawa Barat';
+        $data['kodeunik'] = $this->External_clocker_model->buat_kode();
         $this->load->view('external_clocker/external_clocker_form', $data);
     }
     
@@ -81,15 +82,16 @@ class External_clocker extends CI_Controller
             $this->create();
         } else {
             $data = array(
+        'idexternal_clocker' => $this->External_clocker_model->buat_kode(),
 		'url_external' => $this->input->post('url_external',TRUE),
-		'url_redirect' => $this->input->post('url_redirect',TRUE),
+		'url_redirect'=>base_url('info/detail/') .$this->External_clocker_model->buat_kode().'',
 		'url_tujuan' => $this->input->post('url_tujuan',TRUE),
-		'username' => $this->input->post('username',TRUE),
+		'username' => $this->session->identity,
 	    );
 
             $this->External_clocker_model->insert($data);
             $this->session->set_flashdata('message', 'Create Record Success');
-            redirect(site_url('external_clocker'));
+            redirect(site_url('premium/external_clocker'));
         }
     }
     
@@ -111,10 +113,11 @@ class External_clocker extends CI_Controller
             $data['title']       ='Admin Panel';
             $data['judul_menu']  ='Braja Marketindo';
             $data['nama_jln']    ='Jl.Lotus Timur, Jakasetia, Jawa Barat';
+            $data['kodeunik'] = set_value('idexternal_clocker', $row->idexternal_clocker);
             $this->load->view('external_clocker/external_clocker_form', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
-            redirect(site_url('external_clocker'));
+            redirect(site_url('premium/external_clocker'));
         }
     }
     
@@ -126,15 +129,14 @@ class External_clocker extends CI_Controller
             $this->update($this->input->post('idexternal_clocker', TRUE));
         } else {
             $data = array(
-		'url_external' => $this->input->post('url_external',TRUE),
-		'url_redirect' => $this->input->post('url_redirect',TRUE),
-		'url_tujuan' => $this->input->post('url_tujuan',TRUE),
-		'username' => $this->input->post('username',TRUE),
-	    );
+        		'url_external' => $this->input->post('url_external',TRUE),
+        		'url_tujuan' => $this->input->post('url_tujuan',TRUE),
+        		'username' => $this->session->identity,
+    	    );
 
             $this->External_clocker_model->update($this->input->post('idexternal_clocker', TRUE), $data);
             $this->session->set_flashdata('message', 'Update Record Success');
-            redirect(site_url('external_clocker'));
+            redirect(site_url('premium/external_clocker'));
         }
     }
     
@@ -145,20 +147,18 @@ class External_clocker extends CI_Controller
         if ($row) {
             $this->External_clocker_model->delete($id);
             $this->session->set_flashdata('message', 'Delete Record Success');
-            redirect(site_url('external_clocker'));
+            redirect(site_url('premium/external_clocker'));
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
-            redirect(site_url('external_clocker'));
+            redirect(site_url('premium/external_clocker'));
         }
     }
 
     public function _rules() 
     {
 	$this->form_validation->set_rules('url_external', 'url external', 'trim|required');
-	$this->form_validation->set_rules('url_redirect', 'url redirect', 'trim|required');
 	$this->form_validation->set_rules('url_tujuan', 'url tujuan', 'trim|required');
 
-	$this->form_validation->set_rules('idexternal_clocker', 'idexternal_clocker', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
     }
 

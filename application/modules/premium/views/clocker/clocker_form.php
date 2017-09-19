@@ -30,9 +30,6 @@ $url = base_url('assets/images/clocker/').$photo;
             <textarea rows="5" cols="5" class="form-control" name="deskripsi" id="deskripsi" placeholder="Deskripsi clocker" /><?php echo $deskripsi; ?></textarea> 
         </div>
 	    <div class="form-group">
-            <input type="hidden" class="form-control" name="url_redirect" id="url_redirect" placeholder="Url Redirect" value="<?php echo $kodeunik; ?>" />
-        </div>
-	    <div class="form-group">
             <label for="varchar">Url Tujuan <?php echo form_error('url_tujuan') ?></label>
             <input type="text" class="form-control" name="url_tujuan" id="url_tujuan" placeholder="Url Tujuan" value="<?php echo $url_tujuan; ?>" />
         </div>
@@ -45,7 +42,7 @@ $url = base_url('assets/images/clocker/').$photo;
         </div>
         </div>
         <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>" style="display: none">
-	    <input type="hidden" name="idclocker" value="<?php echo $kodeunik; ?>" /> 
+	    <input type="hidden" name="idclocker" value="<?php echo $idclocker; ?>" /> 
 	    <button type="submit" value="upload" class="btn btn-primary"><?php echo $button ?></button> 
 	    <a href="<?php echo site_url('premium/clocker') ?>" class="btn btn-default">Cancel</a>
 	</form>

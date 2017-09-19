@@ -90,19 +90,19 @@ class Clocker extends CI_Controller
         $this->upload->set_xss_clean(TRUE);
         $hasil = $this->upload->data();
         if ($hasil['file_name']==''){
-         $data = array('idclocker'=>$this->input->post('idclocker', TRUE),
+         $data = array('idclocker'=>$this->Clocker_model->buat_kode(),
                     'title'=>$this->input->post('title', TRUE),
                     'deskripsi'=>$this->input->post('deskripsi', TRUE),
-                    'url_redirect'=>base_url('news/detail/') .$this->input->post('url_redirect', TRUE).'',
+                    'url_redirect'=>base_url('news/detail/') .$this->Clocker_model->buat_kode().'',
                     'url_tujuan'=>$this->input->post('url_tujuan', TRUE),
                     'photo'=>$hasil['file_name'],
                     'username' => $this->session->identity,
              );
             }else{
-            $data = array('idclocker'=>$this->input->post('idclocker', TRUE),
+            $data = array('idclocker'=>$this->Clocker_model->buat_kode(),
                     'title'=>$this->input->post('title', TRUE),
                     'deskripsi'=>$this->input->post('deskripsi', TRUE),
-                    'url_redirect'=>base_url('news/detail/') .$this->input->post('url_redirect', TRUE).'',
+                    'url_redirect'=>base_url('news/detail/') .$this->Clocker_model->buat_kode().'',
                     'url_tujuan'=>$this->input->post('url_tujuan', TRUE),
                     'photo'=>$hasil['file_name'],
                     'username' => $this->session->identity,
@@ -160,14 +160,12 @@ class Clocker extends CI_Controller
         if ($hasil['file_name']==''){
          $data = array( 'title' => $this->input->post('title',TRUE),
                         'deskripsi' => $this->input->post('deskripsi',TRUE),
-                        'url_redirect' => base_url('news/detail/') .$this->input->post('url_redirect',TRUE).'',
                         'url_tujuan' => $this->input->post('url_tujuan',TRUE),
                         'username' => $this->session->identity,
                       );
             }else{
             $data = array( 'title' => $this->input->post('title',TRUE),
                            'deskripsi' => $this->input->post('deskripsi',TRUE),
-                           'url_redirect' => base_url('news/detail/') .$this->input->post('url_redirect',TRUE).'',
                            'url_tujuan' => $this->input->post('url_tujuan',TRUE),
                            'username' => $this->session->identity,
                            'photo'=>$hasil['file_name'],
@@ -196,9 +194,7 @@ class Clocker extends CI_Controller
     public function _rules() 
     {
 	$this->form_validation->set_rules('title', 'title', 'trim|required');
-	$this->form_validation->set_rules('url_redirect', 'url redirect', 'trim|required');
 	$this->form_validation->set_rules('url_tujuan', 'url tujuan', 'trim|required');
-	$this->form_validation->set_rules('idclocker', 'idclocker', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
     }
 

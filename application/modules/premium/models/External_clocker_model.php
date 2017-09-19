@@ -19,6 +19,7 @@ class External_clocker_model extends CI_Model
     function get_all()
     {
         $this->db->order_by($this->id, $this->order);
+        $this->db->where('username', $this->session->identity);
         return $this->db->get($this->table)->result();
     }
 
@@ -26,6 +27,7 @@ class External_clocker_model extends CI_Model
     function get_by_id($id)
     {
         $this->db->where($this->id, $id);
+        $this->db->where('username', $this->session->identity);
         return $this->db->get($this->table)->row();
     }
     
@@ -35,7 +37,7 @@ class External_clocker_model extends CI_Model
 	$this->db->or_like('url_external', $q);
 	$this->db->or_like('url_redirect', $q);
 	$this->db->or_like('url_tujuan', $q);
-	$this->db->or_like('username', $q);
+	$this->db->where('username', $this->session->identity);
 	$this->db->from($this->table);
         return $this->db->count_all_results();
     }
@@ -47,7 +49,7 @@ class External_clocker_model extends CI_Model
 	$this->db->or_like('url_external', $q);
 	$this->db->or_like('url_redirect', $q);
 	$this->db->or_like('url_tujuan', $q);
-	$this->db->or_like('username', $q);
+	$this->db->where('username', $this->session->identity);
 	$this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();
     }
@@ -55,6 +57,7 @@ class External_clocker_model extends CI_Model
     // insert data
     function insert($data)
     {
+        $this->db->where('username', $this->session->identity);
         $this->db->insert($this->table, $data);
     }
 
@@ -62,6 +65,7 @@ class External_clocker_model extends CI_Model
     function update($id, $data)
     {
         $this->db->where($this->id, $id);
+        $this->db->where('username', $this->session->identity);
         $this->db->update($this->table, $data);
     }
 
@@ -69,7 +73,27 @@ class External_clocker_model extends CI_Model
     function delete($id)
     {
         $this->db->where($this->id, $id);
+        $this->db->where('username', $this->session->identity);
         $this->db->delete($this->table);
+    }
+
+    public function buat_kode()   {
+          $this->db->select('RIGHT(external_clocker.idexternal_clocker,4) as kode', FALSE);
+          $this->db->order_by('idexternal_clocker','DESC');    
+          $this->db->limit(1);    
+          $query = $this->db->get('external_clocker');      //cek dulu apakah ada sudah ada kode di tabel.    
+          if($query->num_rows() <> 0){      
+           //jika kode ternyata sudah ada.      
+           $data = $query->row();      
+           $kode = intval($data->kode) + 1;    
+          }
+          else {      
+           //jika kode belum ada      
+           $kode = 1;    
+          }
+          $kodemax = str_pad($kode, 4, "0", STR_PAD_LEFT); // angka 4 menunjukkan jumlah digit angka 0
+          $kodejadi = "info-01-".$kodemax;    // hasilnya ODJ-9921-0001 dst.
+          return $kodejadi;   
     }
 
 }

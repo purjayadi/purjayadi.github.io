@@ -65,8 +65,7 @@ $this->load->view('panelIMS/template/navbar');
 		<th>Url External</th>
 		<th>Url Redirect</th>
 		<th>Url Tujuan</th>
-		<th>Username</th>
-		<th>Action</th>
+		<th style="text-align:center" width="200px">Action</th>
             </tr></thead><?php
             foreach ($external_clocker_data as $external_clocker)
             {
@@ -76,11 +75,8 @@ $this->load->view('panelIMS/template/navbar');
 			<td><?php echo $external_clocker->url_external ?></td>
 			<td><?php echo $external_clocker->url_redirect ?></td>
 			<td><?php echo $external_clocker->url_tujuan ?></td>
-			<td><?php echo $external_clocker->username ?></td>
 			<td style="text-align:center" width="200px">
 				<?php 
-				echo anchor(site_url('premium/external_clocker/read/'.$external_clocker->idexternal_clocker),'Read'); 
-				echo ' | '; 
 				echo anchor(site_url('premium/external_clocker/update/'.$external_clocker->idexternal_clocker),'Update'); 
 				echo ' | '; 
 				echo anchor(site_url('premium/external_clocker/delete/'.$external_clocker->idexternal_clocker),'Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"'); 

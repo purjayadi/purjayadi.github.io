@@ -69,9 +69,9 @@
 										<li><a href="<?php echo base_url('premium/keywordkota')?>">KEYWORD KOTA</a></li>
 										<li><a href="<?php echo base_url('premium/fbpixel')?>">FB PIXEL</a></li>
 										<li><a href="<?php echo base_url('premium/whatsapp')?>">WHATS APP ORDER</a></li>
-										<li><a href="#">CLOACKER</a></li>
-										<li><a href="#">EKSTERNAL CLOACKER</a></li>
-										<li><a href="#">TEMPLATE INSTA</a></li>
+										<li><a href="<?php echo base_url('premium/clocker')?>">CLOACKER</a></li>
+										<li><a href="<?php echo base_url('premium/external_clocker')?>">EKSTERNAL CLOACKER</a></li>
+										<li><a href="<?php echo base_url('premium/insta')?>">TEMPLATE INSTA</a></li>
 									</ul>
 								</li>
 								<li <?php echo ($aktif == 'subdomain/listsub')?'class="active"':"";?>>

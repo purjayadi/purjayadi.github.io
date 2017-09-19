@@ -8,7 +8,7 @@ class Modeluser extends CI_Model
 
     var $table = 'users';
     var $column_order = array(null,'first_name','last_name','username','company','alamat','phone','email','created_on','last_login','jatuh_tempo','active',null); //set column field database for datatable orderable
-    var $column_search = array('username','company','first_name'); //set column field database for datatable searchable just firstname , lastname , address are searchable
+    var $column_search = array('username','company','first_name','active','jatuh_tempo'); //set column field database for datatable searchable just firstname , lastname , address are searchable
     var $order = array('tgl_register' => 'desc'); // default order 
 
     public function __construct()

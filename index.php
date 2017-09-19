@@ -55,6 +55,11 @@
  */
 	define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
 
+
+
+if ( function_exists( 'date_default_timezone_set' ) )
+date_default_timezone_set('Asia/Jakarta');
+
 /*
  *---------------------------------------------------------------
  * ERROR REPORTING

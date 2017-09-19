@@ -86,10 +86,10 @@ class Whatsapp extends CI_Controller
             $this->create();
         } else {
             $data = array(
-        'idwa_order' => $this->input->post('idwa_order',TRUE),
+        'idwa_order' => $this->Wa_order_model->buat_kode(),
 		'no_wa' => $this->input->post('no_wa',TRUE),
 		'text_wa' => $this->input->post('text_wa',TRUE),
-		'url_redirect' => base_url('orderwa/detail/') .$this->input->post('url_redirect',TRUE).'',
+		'url_redirect' => base_url('orderwa/detail/') .$this->Wa_order_model->buat_kode().'',
 		'url_wa' => 'https://api.whatsapp.com/send?text='.$this->input->post('text_wa', TRUE).'&phone='.$this->input->post('no_wa', TRUE).'',
 		'username' => $this->session->identity,
 	    );
@@ -137,7 +137,6 @@ class Whatsapp extends CI_Controller
             $data = array(
 		'no_wa' => $this->input->post('no_wa',TRUE),
 		'text_wa' => $this->input->post('text_wa',TRUE),
-        'url_wa' => 'https://api.whatsapp.com/send?text='.$this->input->post('text_wa', TRUE).'&phone='.$this->input->post('no_wa', TRUE).'',
 		'username' => $this->session->identity,
 	    );
 
@@ -166,7 +165,6 @@ class Whatsapp extends CI_Controller
 	$this->form_validation->set_rules('no_wa', 'no wa', 'trim|required');
 	$this->form_validation->set_rules('text_wa', 'text wa', 'trim|required');
 
-	$this->form_validation->set_rules('idwa_order', 'idwa_order', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
     }
 

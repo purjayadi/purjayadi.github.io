@@ -28,11 +28,8 @@ $this->load->view('panelIMS/template/navbar');
                 <label for="text_wa">Deskripsi / Text WA <?php echo form_error('text_wa') ?></label>
                 <textarea class="form-control" rows="3" name="text_wa" id="text_wa" placeholder="Text Wa"><?php echo $text_wa; ?></textarea>
             </div>
-    	    <div class="form-group">
-                <input type="hidden" name='url_redirect' class="form-control" value="<?php echo $kodeunik; ?>" readonly>
-            </div>
             <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>" style="display: none">
-    	    <input type="hidden" name="idwa_order" value="<?php echo $kodeunik; ?>" /> 
+    	    <input type="hidden" name="idwa_order" value="<?php echo $idwa_order; ?>" /> 
     	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
     	    <a href="<?php echo site_url('premium/whatsapp') ?>" class="btn btn-default">Cancel</a>
     	</form>
