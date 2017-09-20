@@ -33,10 +33,6 @@ class External_clocker_model extends CI_Model
     
     // get total rows
     function total_rows($q = NULL) {
-        $this->db->like('idexternal_clocker', $q);
-	$this->db->or_like('url_external', $q);
-	$this->db->or_like('url_redirect', $q);
-	$this->db->or_like('url_tujuan', $q);
 	$this->db->where('username', $this->session->identity);
 	$this->db->from($this->table);
         return $this->db->count_all_results();
@@ -44,11 +40,6 @@ class External_clocker_model extends CI_Model
 
     // get data with limit and search
     function get_limit_data($limit, $start = 0, $q = NULL) {
-        $this->db->order_by($this->id, $this->order);
-        $this->db->like('idexternal_clocker', $q);
-	$this->db->or_like('url_external', $q);
-	$this->db->or_like('url_redirect', $q);
-	$this->db->or_like('url_tujuan', $q);
 	$this->db->where('username', $this->session->identity);
 	$this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();

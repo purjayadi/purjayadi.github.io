@@ -19,12 +19,13 @@ class Subdomain_model extends CI_Model
     function get_all()
     {
         $this->db->order_by($this->id, $this->order);
+        
         return $this->db->get($this->table)->result();
     }
 
     function subdomain(){
         $this->db->order_by('idsubdomain', 'ASC');
-        $this->db->where('username', 'admin');
+        $this->db->where('username', $this->session->identity);
         return $this->db->get('subdomain');
     }
     // get data by id

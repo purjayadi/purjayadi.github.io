@@ -33,18 +33,17 @@ class Wa_order_model extends CI_Model
     
     // get total rows
     function total_rows($q = NULL) {
-        $this->db->or_like('no_wa', $q);
+        $this->db->like('no_wa', $q);
         $this->db->where('username', $this->session->identity);
-    	$this->db->from($this->table);
+    	  $this->db->from($this->table);
         return $this->db->count_all_results();
     }
 
     // get data with limit and search
     function get_limit_data($limit, $start = 0, $q = NULL) {
-        $this->db->order_by($this->id, $this->order);
-    	$this->db->or_like('no_wa', $q);
+        $this->db->like('no_wa', $q);
         $this->db->where('username', $this->session->identity);
-    	$this->db->limit($limit, $start);
+    	  $this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();
     }
 

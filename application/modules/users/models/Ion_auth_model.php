@@ -1049,7 +1049,7 @@ class Ion_auth_model extends CI_Model
             if($last_login+$recheck < time())
             {
                 $query = $this->db->select('id')
-                    ->where(array($this->identity_column=>$this->session->userdata('identity'),'active'=>'1'))
+                    ->where(array($this->identity_column=>$this->session->userdata('identity'),'active'=>'Active'))
                     ->limit(1)
                     ->order_by('id', 'desc')
                     ->get($this->tables['users']);
