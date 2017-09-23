@@ -64,45 +64,6 @@ class Pendaftaran extends CI_Controller
         }
     }
 
-    public function create() 
-    {
-        $data = array(
-            'button' => 'Create',
-            'action' => site_url('pendaftaran/create_action'),
-    	    'id_pendaftaran' => set_value('id_pendaftaran'),
-    	    'nama_lengkap' => set_value('nama_lengkap'),
-    	    'email' => set_value('email'),
-    	    'no_telp' => set_value('no_telp'),
-    	    'nama_subdomain' => set_value('nama_subdomain'),
-    	    'paket_layanan' => set_value('paket_layanan'),
-    	    'kota' => set_value('kota'),
-    	    'tgl_entry' => set_value('tgl_entry'),
-	);
-        $this->load->view('pendaftaran/pendaftaran_form', $data);
-    }
-    
-    public function create_action() 
-    {
-        $this->_rules();
-
-        if ($this->form_validation->run() == FALSE) {
-            $this->create();
-        } else {
-            $data = array(
-    		'nama_lengkap' => $this->input->post('nama_lengkap',TRUE),
-    		'email' => $this->input->post('email',TRUE),
-    		'no_telp' => $this->input->post('no_telp',TRUE),
-    		'nama_subdomain' => $this->input->post('nama_subdomain',TRUE),
-    		'paket_layanan' => $this->input->post('paket_layanan',TRUE),
-    		'kota' => $this->input->post('kota',TRUE),
-    		'tgl_entry' => $this->input->post('tgl_entry',TRUE),
-	    );
-
-            $this->Pendaftaran_model->insert($data);
-            $this->session->set_flashdata('message', 'Create Record Success');
-            redirect(site_url('pendaftaran'));
-        }
-    }
     
     public function update($id) 
     {
@@ -173,7 +134,6 @@ class Pendaftaran extends CI_Controller
 	$this->form_validation->set_rules('nama_subdomain', 'nama subdomain', 'trim|required');
 	$this->form_validation->set_rules('paket_layanan', 'paket layanan', 'trim|required');
 	$this->form_validation->set_rules('kota', 'kota', 'trim|required');
-	$this->form_validation->set_rules('tgl_entry', 'tgl entry', 'trim|required');
 
 	$this->form_validation->set_rules('id_pendaftaran', 'id_pendaftaran', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');

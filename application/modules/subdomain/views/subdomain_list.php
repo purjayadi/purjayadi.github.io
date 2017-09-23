@@ -67,14 +67,13 @@ $this->load->view('administrator/template/navbar');
                             </div>
                         </div>
         <?php echo $this->session->flashdata('message'); ?> 
-        <div class="table-responsive table-hover datatable-responsive table-striped">
-        <table class="table table-sm">
+        <table class="table table-togglable table-hover">
         <thead>
         <tr>
         <th>No</th>
-		<th>Subdomain</th>
-		<th>User</th>
-		<th style="text-align:center" width="200px">Action</th>
+		<th data-toggle="true">Subdomain</th>
+		<th data-hide="phone">User</th>
+		<th style="text-align:center" width="200px" data-hide="phone">Action</th>
         </tr>
         </thead>
             <?php
@@ -96,7 +95,6 @@ $this->load->view('administrator/template/navbar');
             }
             ?>
         </table>
-        </div>
         </div>
         <div class="row">
             <div class="col-md-6">

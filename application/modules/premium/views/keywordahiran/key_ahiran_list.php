@@ -53,13 +53,13 @@ $this->load->view('panelIMS/template/navbar');
                             </div>
                         </div>
         <?php echo $this->session->flashdata('message'); ?> 
-        <div class="table-responsive table-hover datatable-responsive table-striped">
-        <table class="table table-sm">
+        <div class="table-responsive">
+        <table class="table table-togglable table-hover">
         <thead>
             <tr>
             <th>No</th>
-    		<th>Keyword</th>
-    		<th style="text-align:center" width="200px">Action</th>
+    		<th data-toggle="true">Keyword</th>
+    		<th style="text-align:center" width="200px" data-hide="phone">Action</th>
             </tr>
         </thead>
             <?php

@@ -83,7 +83,6 @@
 								<li>
 									<a href="http://ubersuggest.org" target="_blank"><i class="glyphicon glyphicon-flash"></i> <span>RISET KATA KUNCI</span></a>
 								</li>
-								<hr></hr>
 							</ul>
 						</div>
 					</div>

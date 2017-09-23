@@ -50,6 +50,7 @@
 					<?php echo form_open("users/auth/cek_login"); ?>
 						<div class="panel panel-body login-form">
 							<div class="text-center">
+								<img src="<?php echo base_url('assets/images/settings.png')?>" alt="" width="90" height="90">
 								<h5 class="content-group-lg">Login to your account <small class="display-block">Enter your credentials</small></h5>
 							</div>
 							<?php echo $this->session->flashdata('message'); ?>
@@ -82,6 +83,8 @@
 							<div class="form-group">
 								<button type="submit" class="btn bg-blue btn-block">Login <i class="icon-arrow-right14 position-right"></i></button>
 							</div>
+							<div class="content-divider text-muted form-group"><span>Don't have an account?</span></div>
+							<a href="<?php echo base_url('registrasi')?>" class="btn btn-default btn-block content-group">Sign up</a>
 						</div>
 					<?php echo form_close(); ?>
 					<!-- /advanced login -->

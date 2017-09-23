@@ -64,16 +64,17 @@ $this->load->view('administrator/template/navbar');
                                 </ul>
                             </div>
                         </div>
-        <?php echo $this->session->flashdata('message'); ?> 
-        <table id="table" class="table table-hover datatable-responsive table-striped" >
+        <?php echo $this->session->flashdata('message'); ?>
+        <div class="table-responsive"> 
+        <table class="table table-togglable table-hover">
         <thead>
         <tr>
             <th>No</th>
-    		<th>Kode User</th>
-    		<th>Nama Pengirim</th>
-    		<th>Tgl Transfer</th>
-    		<th>Status</th>
-    		<th>Action</th>
+    		<th>Email</th>
+    		<th data-toggle="true">Nama Pengirim</th>
+    		<th data-hide="phone">Tgl Transfer</th>
+    		<th data-hide="phone">Status</th>
+    		<th data-hide="phone">Action</th>
         </tr>
         </thead>
             <?php
@@ -102,6 +103,7 @@ $this->load->view('administrator/template/navbar');
             }
             ?>
         </table>
+        </div>
         </div>
         <div class="row">
             <div class="col-md-6">

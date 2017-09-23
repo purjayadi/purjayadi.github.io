@@ -158,19 +158,27 @@ class Clocker extends CI_Controller
         $this->upload->set_xss_clean(TRUE);
         $hasil = $this->upload->data();
         if ($hasil['file_name']==''){
-         $data = array( 'title' => $this->input->post('title',TRUE),
+            $data = array( 'title' => $this->input->post('title',TRUE),
                         'deskripsi' => $this->input->post('deskripsi',TRUE),
                         'url_tujuan' => $this->input->post('url_tujuan',TRUE),
                         'username' => $this->session->identity,
                       );
             }else{
+            $query = $this->db->query("select * from clocker where idclocker= {'idclocker'}");
+                                            foreach ($query->result() as $key) {
+                                unlink('./assets/images/clocker/'.$key->photo);
+                            }
             $data = array( 'title' => $this->input->post('title',TRUE),
                            'deskripsi' => $this->input->post('deskripsi',TRUE),
                            'url_tujuan' => $this->input->post('url_tujuan',TRUE),
                            'username' => $this->session->identity,
                            'photo'=>$hasil['file_name'],
+
                          );
+                            
+                            
             }
+
             $this->Clocker_model->update($this->input->post('idclocker', TRUE), $data);
             $this->session->set_flashdata('message', 'Update Record Success');
             redirect(site_url('premium/clocker'));
@@ -182,6 +190,10 @@ class Clocker extends CI_Controller
         $row = $this->Clocker_model->get_by_id($id);
 
         if ($row) {
+            $query = $this->db->query("select * from clocker where idclocker= '$id'");
+                            foreach ($query->result() as $key) {
+                                unlink('./assets/images/clocker/'.$key->photo);
+                            }
             $this->Clocker_model->delete($id);
             $this->session->set_flashdata('message', 'Delete Record Success');
             redirect(site_url('premium/clocker'));

@@ -56,25 +56,25 @@ $this->load->view('panelIMS/template/navbar');
                                 </ul>
                             </div>
                         </div>
-        <?php echo $this->session->flashdata('message'); ?> 
-        <div class="table-responsive table-hover datatable-responsive table-striped">
-        <table class="table table-sm">
+        <?php echo $this->session->flashdata('message'); ?>
+        <div class="table-responsive"> 
+        <table class="table table-togglable table-hover">
         <thead>
             <tr>
                 <th>No</th>
-		<th>Title</th>
-		<th>Url Redirect</th>
-		<th>Url Tujuan</th>
-		<th style="text-align:center" width="200px">Action</th>
+		<th data-toggle="true">Title</th>
+		<th data-hide="phone">Url Redirect</th>
+		<th data-hide="phone">Url Tujuan</th>
+		<th style="text-align:center" width="200px" data-hide="phone">Action</th>
             </tr></thead><?php
             foreach ($clocker_data as $clocker)
             {
                 ?>
                 <tr>
 			<td width="80px"><?php echo ++$start ?></td>
-			<td><?php echo $clocker->title ?></td>
-			<td><?php echo $clocker->url_redirect ?></td>
-			<td><?php echo $clocker->url_tujuan ?></td>
+			<td style="word-wrap: break-word"><?php echo $clocker->title ?></td>
+			<td style="word-wrap: break-word"><?php echo $clocker->url_redirect ?></td>
+			<td style="word-wrap: break-word"><?php echo $clocker->url_tujuan ?></td>
 			<td style="text-align:center" width="200px">
 				<?php 
 				echo anchor(site_url('premium/clocker/update/'.$clocker->idclocker),'Update'); 
@@ -87,8 +87,8 @@ $this->load->view('panelIMS/template/navbar');
             }
             ?>
         </table>
-    </div>
-</div>
+        </div>
+        </div>
         <div class="row">
             <div class="col-md-6">
                 <a href="#" class="btn btn-primary">Total Record : <?php echo $total_rows ?></a>

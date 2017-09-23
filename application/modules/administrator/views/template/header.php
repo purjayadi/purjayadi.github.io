@@ -48,8 +48,9 @@
 	<script type="text/javascript" src="<?php echo base_url('assets/js/plugins/pickers/pickadate/legacy.js')?>"></script>
 	<script type="text/javascript" src="<?php echo base_url('assets/js/plugins/forms/selects/select2.min.js')?>"></script>
 	<script type="text/javascript" src="<?php echo base_url('assets/js/plugins/forms/selects/bootstrap_select.min.js')?>"></script>
+	<script type="text/javascript" src="<?php echo base_url('assets/js/plugins/tables/footable/footable.min.js')?>"></script>
 	<script type="text/javascript" src="<?php echo base_url('assets/js/core/app.js')?>"></script>
-
+	<script type="text/javascript" src="<?php echo base_url('assets/js/pages/table_responsive.js')?>"></script>
 	<script type="text/javascript" src="<?php echo base_url('assets/js/pages/picker_date.js')?>"></script>
 	<script type="text/javascript" src="<?php echo base_url('assets/js/pages/form_bootstrap_select.js')?>"></script>
 	<script type="text/javascript" src="<?php echo base_url('assets/js/pages/datatables_extension_buttons_html5.js')?>""></script>

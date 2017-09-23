@@ -68,17 +68,18 @@ $this->load->view('administrator/template/navbar');
                             </div>
                         </div>
         <?php echo $this->session->flashdata('message'); ?> 
-        <div class="table-responsive table-hover datatable-responsive table-striped">
-        <table class="table table-sm">
+        <div class="table-responsive"> 
+        <table class="table table-togglable table-hover">
         <thead>
         <tr>
             <th>No</th>
-    		<th>Nama Lengkap</th>
-    		<th>Email</th>
-    		<th>No Telp</th>
-    		<th>Nama Subdomain</th>
+            <th data-toggle="true">Nomer Registrasi</th>
+    		<th data-hide="phone, tablet: 1024">Nama Lengkap</th>
+    		<th data-hide="phone">Email</th>
+    		<th data-hide="phone">No Telp</th>
+    		<th data-hide="phone">Nama Subdomain</th>
     		<th>Tanggal Pendaftaran</th>
-    		<th>Action</th>
+    		<th data-hide="phone">Action</th>
         </tr>
         </thead>
         <?php
@@ -87,6 +88,7 @@ $this->load->view('administrator/template/navbar');
                 ?>
                 <tr>
 			<td width="80px"><?php echo ++$start ?></td>
+            <td><?php echo $pendaftaran->id_pendaftaran ?></td>
 			<td><?php echo $pendaftaran->nama_lengkap ?></td>
 			<td><?php echo $pendaftaran->email ?></td>
 			<td><?php echo $pendaftaran->no_telp ?></td>
