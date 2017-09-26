@@ -31,10 +31,12 @@
 	<script type="text/javascript" src="<?php echo base_url('assets/js/plugins/ui/moment/moment.min.js')?>"></script>
 	<script type="text/javascript" src="<?php echo base_url('assets/js/plugins/pickers/daterangepicker.js')?>"></script>
 	<script type="text/javascript" src="<?php echo base_url('assets/js/plugins/tables/footable/footable.min.js')?>"></script>
+	<script type="text/javascript" src="<?php echo base_url('ckeditor/ckeditor.js')?>"></script>
 	<script type="text/javascript" src="<?php echo base_url('assets/js/core/app.js')?>"></script>
 	<script type="text/javascript" src="<?php echo base_url('assets/js/pages/table_responsive.js')?>"></script>
 	<script type="text/javascript" src="<?php echo base_url('assets/js/pages/dashboard.js')?>"></script>
 	<!-- /theme JS files -->
+	<script type="text/javascript" src="<?php echo base_url('assets/js/pages/editor_ckeditor.js')?>"></script>
 
 </head>
 

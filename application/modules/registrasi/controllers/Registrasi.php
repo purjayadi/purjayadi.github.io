@@ -48,6 +48,7 @@ class Registrasi extends CI_Controller
 				'tgl_entry' => Date('Y-m-d H:i:s'),
 	    );
             $this->sendMail();
+            $this->mailadmin();
             $this->Model_registrasi->insert($data);
             $this->session->set_flashdata('message', 'Create Record Success');
 
@@ -77,13 +78,39 @@ class Registrasi extends CI_Controller
   
    		$this->email->initialize($config);;
 		$this->email->from('admin@kutamedica.com');
+		$this->email->to(''.$this->input->post('email',TRUE).'');
+		$this->email->subject('Detail pendaftaran Braja Link');
+		$this->email->message('Detail pendaftaran anda : Nomer pendaftaran : '.$this->Model_registrasi->buat_kode().' email : '.$this->input->post('email',TRUE).' silahkan melakukan pembayaran sebesar Rp. X.XXX.XXX');
+		$this->email->send();	
+		 
+    }
+
+    public function mailadmin() {
+
+	   $this->load->library('email');
+       $config = array();
+	   $config['charset'] = 'utf-8';
+	   $config['useragent'] = 'Codeigniter'; //bebas sesuai keinginan kamu
+	   $config['protocol']= "tls";
+	   $config['mailtype']= "html";
+	   $config['smtp_host']= "tls://smtp.gmail.com";
+	   $config['smtp_port']= "587";
+	   $config['smtp_timeout']= "5";
+	   $config['smtp_user']= "purjayadi@gmail.com";              //isi dengan email anda
+	   $config['smtp_pass']= "l2017Fh@ilm";            // isi dengan password dari email anda
+	   $config['crlf']="\r\n";
+	   $config['newline']="\r\n";
+	  
+	   $config['wordwrap'] = TRUE;
+
+ //memanggil library email dan set konfigurasi untuk pengiriman email
+  
+   		$this->email->initialize($config);;
+		$this->email->from('admin@kutamedica.com');
 		$this->email->to('purjayadi@gmail.com');
 		$this->email->subject('User baru bisnislink');
-		$this->email->message('Silahkan periksa dara pendaftaran baru pada halaman admin anda');
-		$this->email->send();
-
-		
-		 
+		$this->email->message('Silahkan periksa dara pendaftaran baru pada halaman admin anda '.$this->input->post('email',TRUE).'');
+		$this->email->send();	 
     }
     public function _rules() 
     {

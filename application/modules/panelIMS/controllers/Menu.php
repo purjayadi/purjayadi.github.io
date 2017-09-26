@@ -5,70 +5,97 @@ if (!defined('BASEPATH'))
 
 class Menu extends CI_Controller
 {
-    function __construct()
+    public function __construct()
     {
         parent::__construct();
-        $this->load->model('Menu_model');
+        if (!$this->ion_auth->logged_in()) {//cek login ga?
+            redirect('login','refresh');
+        }else{
+            if (!$this->ion_auth->in_group('members')) {//cek admin ga?
+                redirect('login','refresh');
+            }
+        }
+        $this->load->model('Model_menu');
         $this->load->library('form_validation');
     }
 
     public function index()
-    {
-        $q = urldecode($this->input->get('q', TRUE));
-        $start = intval($this->input->get('start'));
+    {  
+        $data['aktif']       ='Master';
+        $data['title']       ='Admin Panel';
+        $data['judul']       ='Master';
+        $data['sub_judul']   ='Menu';
+        $data['table_title'] ='BrajaMarketindo Menu';
+        $data['judul_menu']  ='Braja Marketindo';
+        $data['nama_jln']    ='Jl.Lotus Timur, Jakasetia, Jawa Barat';
+        $data['content']     ='menu/menu_list';
+        $data['record']      = $this->Model_menu->getmenu();
+        $this->load->view('dashboard', $data);
+    }
+
+    public function add(){
+        $data['aktif']       ='Master';
+        $data['title']       ='Admin Panel';
+        $data['judul']       ='Master';
+        $data['sub_judul']   ='Add Menu';
+        $data['judul_menu']  ='Braja Marketindo';
+        $data['nama_jln']    ='Jl.Lotus Timur, Jakasetia, Jawa Barat';
+        $data['content']     ='menu/menu_form';
+        $this->load->view('dashboard', $data);
+    }
+
+    public function simpan(){
+
+        $config['upload_path']      = "./assets/imgmenu/";
+        $config['allowed_types']    = 'jpg|jpeg|png|gif|bmp';
+        $config['max_size']         = 500000;
+        $config['max_width']        = 5000;
+        $config['max_height']       = 5000;
+
+        $this->load->library('upload',$config);
+        $this->upload->initialize($config);
+
+        if ($this->upload->do_upload('userfile')) {
+            $file_data      = $this->upload->data();
+
+            $gambar         = $file_data['file_name'];
+            $nama_menu      = $this->input->post('nama_menu');
+            $posisi         = $this->input->post('posisi');
+            $ket_gambar     = $this->input->post('ket_gambar');
+            $kontent        = $this->input->post('kontent');
+            $no_urut        = $this->input->post('no_urut');
+
+            $data = array('nama_menu' => $nama_menu,
+                           'gambar' => $gambar,
+                           'posisi' => $posisi,
+                           'ket_gambar' => $ket_gambar,
+                           'kontent' => $kontent,
+                           'no_urut' => $no_urut,
+                           'tgl_entry' => date('Y-m-d H:i:s'),
+                           'username' => $this->session->identity
+                           );
+            $this->Model_menu->insertdata($data);
+            $this->session->set_flashdata('info','Data Berhasil Disimpan!');
+            redirect('panelIMS/menu');
+            
+        } else {
+            $this->session->set_flashdata('info','Gagal Menyimpan Data!');
+            redirect('panelIMS/menu');
+        } 
         
-        if ($q <> '') {
-            $config['base_url'] = base_url() . 'menu/index.html?q=' . urlencode($q);
-            $config['first_url'] = base_url() . 'menu/index.html?q=' . urlencode($q);
-        } else {
-            $config['base_url'] = base_url() . 'menu/index.html';
-            $config['first_url'] = base_url() . 'menu/index.html';
-        }
-
-        $config['per_page'] = 10;
-        $config['page_query_string'] = TRUE;
-        $config['total_rows'] = $this->Menu_model->total_rows($q);
-        $menu = $this->Menu_model->get_limit_data($config['per_page'], $start, $q);
-
-        $this->load->library('pagination');
-        $this->pagination->initialize($config);
-
-        $data = array(
-            'menu_data' => $menu,
-            'q' => $q,
-            'pagination' => $this->pagination->create_links(),
-            'total_rows' => $config['total_rows'],
-            'start' => $start,
-        );
-        $data['aktif']      ='Master';
-        $data['title']       ='Admin Panel';
-        $data['judul_menu']  ='Braja Marketindo';
-        $data['nama_jln']    ='Jl.Lotus Timur, Jakasetia, Jawa Barat';
-        $data['content']     = 'menu/menu_list';
-        $this->load->view('dashboard', $data);
     }
 
-    public function read($id) 
-    {
-        $row = $this->Menu_model->get_by_id($id);
+    public function edit($id){
+        $data['aktif']       ='Master';
+        $data['title']       ='Admin Panel';
+        $data['judul']       ='Master';
+        $data['sub_judul']   ='Edit Menu';
+        $data['judul_menu']  ='Braja Marketindo';
+        $data['nama_jln']    ='Jl.Lotus Timur, Jakasetia, Jawa Barat';
+        $data['content']     ='menu/menu_edit';
+        $data['record']      = $this->Model_menu->editmenu($id);
+        $row = $this->Model_menu->editmenu($id);
         if ($row) {
-            $data = array(
-		'id_menu' => $row->id_menu,
-		'nama_menu' => $row->nama_menu,
-		'posisi' => $row->posisi,
-		'gambar' => $row->gambar,
-		'ket_gambar' => $row->ket_gambar,
-		'kontent' => $row->kontent,
-		'no_urut' => $row->no_urut,
-		'tgl_entry' => $row->tgl_entry,
-		'tampil' => $row->tampil,
-		'username' => $row->username,
-	    );
-            $data['aktif']      ='Master';
-            $data['title']       ='Admin Panel';
-            $data['judul_menu']  ='Braja Marketindo';
-            $data['nama_jln']    ='Jl.Lotus Timur, Jakasetia, Jawa Barat';
-            $data['content']     = 'menu/menu_read';
             $this->load->view('dashboard', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
@@ -76,139 +103,98 @@ class Menu extends CI_Controller
         }
     }
 
-    public function create() 
-    {
-        $data = array(
-            'button' => 'Create',
-            'action' => site_url('panelIMS/menu/create_action'),
-    	    'id_menu' => set_value('id_menu'),
-    	    'nama_menu' => set_value('nama_menu'),
-    	    'posisi' => set_value('posisi'),
-    	    'gambar' => set_value('gambar'),
-    	    'ket_gambar' => set_value('ket_gambar'),
-    	    'kontent' => set_value('kontent'),
-    	    'no_urut' => set_value('no_urut'),
-    	    //'tgl_entry' => set_value('tgl_entry'),
-    	    'tampil' => set_value('tampil'),
-    	    'username' => set_value('username'),
-	);
-        $data['aktif']      ='Master';
+    public function update(){
+
+        $config['upload_path']    = "./assets/imgmenu/";
+        $config['allowed_types']  = 'jpg|jpeg|png|gif|bmp';
+        $config['max_size']       = 500000;
+        $config['max_width']      = 5000;
+        $config['max_height']     = 5000;
+        //$config['file_name']      = 'gambar-'.trim(str_replace(" ","",date('dmYHis')));
+
+        $this->load->library('upload',$config);
+        $this->upload->initialize($config);
+        $this->upload->do_upload('userfile');
+        $hasil = $this->upload->data();
+
+        if ($hasil['file_name'] == '') {
+            //$gambar         = $file_data['file_name'];
+            $nama_menu      = $this->input->post('nama_menu');
+            $posisi         = $this->input->post('posisi');
+            $ket_gambar     = $this->input->post('ket_gambar');
+            $kontent        = $this->input->post('kontent');
+            $no_urut        = $this->input->post('no_urut');
+            $tampil         = $this->input->post('tampil');
+            $id_menu        = $this->input->post('id_menu');
+            $data = array('nama_menu' => $nama_menu,
+                           //'gambar' => $gambar,
+                           'posisi' => $posisi,
+                           'ket_gambar' => $ket_gambar,
+                           'kontent' => $kontent,
+                           'no_urut' => $no_urut,
+                           'tgl_entry' => date('Y-m-d H:i:s'),
+                           'tampil'    => $tampil,
+                           'username' => $this->session->identity
+                           );
+        } elseif ($hasil['file_name'] != '') {
+
+            $gambar         = $hasil['file_name'];
+            $nama_menu      = $this->input->post('nama_menu');
+            $posisi         = $this->input->post('posisi');
+            $ket_gambar     = $this->input->post('ket_gambar');
+            $kontent        = $this->input->post('kontent');
+            $no_urut        = $this->input->post('no_urut');
+            $tampil         = $this->input->post('tampil');
+            $id_menu        = $this->input->post('id_menu');
+
+            $query = $this->db->query("select * from menu where id_menu= '{$id_menu}'");
+            foreach ($query->result() as $key) {
+                unlink('./assets/imgmenu/'.$key->gambar);
+            }
+
+            $data = array('nama_menu' => $nama_menu,
+                           'gambar' => $gambar,
+                           'posisi' => $posisi,
+                           'ket_gambar' => $ket_gambar,
+                           'kontent' => $kontent,
+                           'no_urut' => $no_urut,
+                           'tgl_entry' => date('Y-m-d H:i:s'),
+                           'tampil'    => $tampil,
+                           'username' => $this->session->identity
+                           );
+        } 
+         $ubah = $this->Model_menu->updatedata($id_menu,$data);
+         if ($ubah) {
+             $this->session->set_flashdata('info','Data Berhasil Diubah!');
+             redirect('panelIMS/menu');
+         } else {
+            $this->session->set_flashdata('info','Gagal Mengubah Data!');
+            redirect('panelIMS/menu');
+        }
+    }
+
+    public function delete($id){
+        $delete = $this->Model_menu->deletedata($id);
+        if ($delete) {
+            $this->session->set_flashdata('info','Data Berhasil Dihapus!');
+            redirect('panelIMS/menu');
+        } else {
+            $this->session->set_flashdata('info','Gagal Mengahpus Data!');
+            redirect('panelIMS/menu');
+        }
+    }
+
+    public function read($id){
+        $data['aktif']       ='Master';
         $data['title']       ='Admin Panel';
+        $data['judul']       ='Master';
+        $data['sub_judul']   ='Menu Detail';
+        $data['read_title']  ='Menu Detail';
         $data['judul_menu']  ='Braja Marketindo';
         $data['nama_jln']    ='Jl.Lotus Timur, Jakasetia, Jawa Barat';
-        $data['content']     = 'menu/menu_form';
+        $data['content']     ='menu/menu_read';
+        $data['record']      = $this->Model_menu->getmenubyid($id);
         $this->load->view('dashboard', $data);
-    }
-    
-    public function create_action() 
-    {
-        //$this->_rules();
-
-        if ($this->form_validation->run() == FALSE) {
-            $this->create();
-        } else {
-            $data = array(
-		'nama_menu' => $this->input->post('nama_menu',TRUE),
-		'posisi' => $this->input->post('posisi',TRUE),
-		'gambar' => $this->input->post('gambar',TRUE),
-		'ket_gambar' => $this->input->post('ket_gambar',TRUE),
-		'kontent' => $this->input->post('kontent',TRUE),
-		'no_urut' => $this->input->post('no_urut',TRUE),
-		'tgl_entry' => date('Y-m-d H:i:s'),
-		'tampil' => $this->input->post('tampil',TRUE),
-		'username' => $this->input->post('username',TRUE),
-	    );
-
-            $this->Menu_model->insert($data);
-            $this->session->set_flashdata('message', 'Create Record Success');
-            redirect(site_url('panelIMS/menu'));
-        }
-    }
-    
-    public function update($id) 
-    {
-        $row = $this->Menu_model->get_by_id($id);
-
-        if ($row) {
-            $data = array(
-                'button' => 'Update',
-                'action' => site_url('panellIMS/menu/update_action'),
-        		'id_menu' => set_value('id_menu', $row->id_menu),
-        		'nama_menu' => set_value('nama_menu', $row->nama_menu),
-        		'posisi' => set_value('posisi', $row->posisi),
-        		'gambar' => set_value('gambar', $row->gambar),
-        		'ket_gambar' => set_value('ket_gambar', $row->ket_gambar),
-        		'kontent' => set_value('kontent', $row->kontent),
-        		'no_urut' => set_value('no_urut', $row->no_urut),
-        		'tgl_entry' => set_value('tgl_entry', $row->tgl_entry),
-        		'tampil' => set_value('tampil', $row->tampil),
-        		'username' => set_value('username', $row->username),
-	    );  
-            $data['aktif']      ='Master';
-            $data['title']       ='Admin Panel';
-            $data['judul_menu']  ='Braja Marketindo';
-            $data['nama_jln']    ='Jl.Lotus Timur, Jakasetia, Jawa Barat';
-            $data['content']     = 'menu/menu_form';
-            $this->load->view('dashboard', $data);
-        } else {
-            $this->session->set_flashdata('message', 'Record Not Found');
-            redirect(site_url('panelIMS/menu'));
-        }
-    }
-    
-    public function update_action() 
-    {
-        $this->_rules();
-
-        if ($this->form_validation->run() == FALSE) {
-            $this->update($this->input->post('id_menu', TRUE));
-        } else {
-            $data = array(
-    		'nama_menu' => $this->input->post('nama_menu',TRUE),
-    		'posisi' => $this->input->post('posisi',TRUE),
-    		'gambar' => $this->input->post('gambar',TRUE),
-    		'ket_gambar' => $this->input->post('ket_gambar',TRUE),
-    		'kontent' => $this->input->post('kontent',TRUE),
-    		'no_urut' => $this->input->post('no_urut',TRUE),
-    		'tgl_entry' => $this->input->post('tgl_entry',TRUE),
-    		'tampil' => $this->input->post('tampil',TRUE),
-    		'username' => $this->input->post('username',TRUE),
-	    );
-
-            $this->Menu_model->update($this->input->post('id_menu', TRUE), $data);
-            $this->session->set_flashdata('message', 'Update Record Success');
-            redirect(site_url('panelIMS/menu'));
-        }
-    }
-    
-    public function delete($id) 
-    {
-        $row = $this->Menu_model->get_by_id($id);
-
-        if ($row) {
-            $this->Menu_model->delete($id);
-            $this->session->set_flashdata('message', 'Delete Record Success');
-            redirect(site_url('panelIMS/menu'));
-        } else {
-            $this->session->set_flashdata('message', 'Record Not Found');
-            redirect(site_url('panelIMS/menu'));
-        }
-    }
-
-    public function _rules() 
-    {
-	$this->form_validation->set_rules('nama_menu', 'nama menu', 'trim|required');
-	$this->form_validation->set_rules('posisi', 'posisi', 'trim|required');
-	$this->form_validation->set_rules('gambar', 'gambar', 'trim|required');
-	//$this->form_validation->set_rules('ket_gambar', 'ket gambar', 'trim|required');
-	$this->form_validation->set_rules('kontent', 'kontent', 'trim|required');
-	$this->form_validation->set_rules('no_urut', 'no urut', 'trim|required');
-	$this->form_validation->set_rules('tgl_entry', 'tgl entry', 'trim|required');
-	$this->form_validation->set_rules('tampil', 'tampil', 'trim|required');
-	//$this->form_validation->set_rules('username', 'username', 'trim|required');
-
-	$this->form_validation->set_rules('id_menu', 'id_menu', 'trim');
-	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
     }
 
     public function excel()

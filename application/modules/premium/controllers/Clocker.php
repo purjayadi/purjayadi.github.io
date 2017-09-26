@@ -138,7 +138,7 @@ class Clocker extends CI_Controller
             $this->load->view('clocker/clocker_form', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
-            redirect(site_url('clocker'));
+            redirect(site_url('premium/clocker'));
         }
     }
     

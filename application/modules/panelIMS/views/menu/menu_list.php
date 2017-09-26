@@ -1,89 +1,80 @@
-<!doctype html>
-<html>
-    <head>
-        <title><?php echo $title;?></title>
-        <link rel="stylesheet" href="<?php echo base_url('assetss/bootstrap/css/bootstrap.min.css') ?>"/>
-        
-    </head>
-    <body>
-        <h2 style="margin-top:0px">Menu List</h2>
-        <div class="row" style="margin-bottom: 10px">
-            <div class="col-md-4">
-                <?php echo anchor(site_url('panelIMS/menu/create'),'Create', 'class="btn btn-primary"'); ?>
-            </div>
-            <div class="col-md-4 text-center">
-                <div style="margin-top: 8px" id="message">
-                    <?php echo $this->session->userdata('message') <> '' ? $this->session->userdata('message') : ''; ?>
-                </div>
-            </div>
-            <div class="col-md-1 text-right">
-            </div>
-            <div class="col-md-3 text-right">
-                <form action="<?php echo site_url('panelIMS/menu/index'); ?>" class="form-inline" method="get">
-                    <div class="input-group">
-                        <input type="text" class="form-control" name="q" value="<?php echo $q; ?>">
-                        <span class="input-group-btn">
-                            <?php 
-                                if ($q <> '')
-                                {
-                                    ?>
-                                    <a href="<?php echo site_url('panelIMS/menu'); ?>" class="btn btn-default">Reset</a>
-                                    <?php
-                                }
-                            ?>
-                          <button class="btn btn-primary" type="submit">Search</button>
-                        </span>
+
+<?php if ($this->session->flashdata('info')): ?>
+<div class="alert bg-success alert-right">
+    <button type="button" class="close" data-dismiss="alert"><span>&times;</span><span class="sr-only">Close</span></button>
+    <span class="text-semibold"><?php echo $this->session->flashdata('info');?></span>
+</div>
+<?php endif; ?>
+<!-- Single row selection -->
+
+                    <div class="panel panel-flat">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><?php echo $table_title;?></h3>
+                            <div class="heading-elements">
+                                <ul class="icons-list">
+                                    <li><a data-action="collapse"></a></li>
+                                    <li><a data-action="reload"></a></li>
+                                    <li><a data-action="close"></a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="panel-body">
+                          <div class="col-sm-4">
+                              <a class="btn btn-primary btn-lg btn-block" href="<?php echo base_url()?>panelIMS/menu/add"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create</a>
+                          </div>
+                        </div>
+
+                       <div class="table-responsive"> 
+                       <table class="table table-togglable table-hover">
+                            <thead>
+                                <tr>
+                                    <th data-hide="phone">Tanggal Entry</th>
+                                    <th data-toggle="true">Menu</th>
+                                    <th data-hide="phone">Gambar</th>
+                                    <th data-hide="phone">Posisi</th>
+                                    <th data-hide="phone">No Urut</th>
+                                    <th data-hide="phone">Tampil</th>
+                                    <th class="text-center" data-hide="phone">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                    foreach ($record as $key) {    
+                                ?>
+                                <tr>
+                                    <td><?php echo $key->tgl_entry ?></td>
+                                    <td><?php echo $key->nama_menu ?></td>
+                                    <td><img src="<?php echo base_url();?>assets/imgmenu/<?php echo $key->gambar; ?>" width="200" height="200"></td>
+                                    <td><?php echo $key->posisi ?></td>
+                                    <td><?php echo $key->no_urut ?></td>
+                                    <td><?php echo $key->tampil ?></td>
+                                    <td class="text-center">
+                                        <ul class="icons-list">
+                                            <li class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                    <i class="icon-menu9"></i>
+                                                </a>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li><a href="<?php echo site_url('panelIMS/menu/read').'/'.$key->id_menu;?>"><span class="glyphicon glyphicon-check"></span><b> Detail</b></a></li>
+                                <li><a href="<?php echo site_url('panelIMS/menu/edit').'/'.$key->id_menu;?>"><span class="glyphicon glyphicon-edit"></span><b> Edit</b></a></li>
+                                <li><a href="<?php echo site_url('panelIMS/menu/delete').'/'.$key->id_menu;?>" onclick="return confirm('Yakin Ingin Hapus?')"><span class="glyphicon glyphicon-trash"></span><b> Delete</b></a></li>
+                            </ul>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <?php
+                                        }
+                                ?>
+                            </tbody>
+                        </table>
                     </div>
-                </form>
-            </div>
-        </div>
-        <table class="table table-bordered" style="margin-bottom: 10px">
-            <tr>
-                <th>No</th>
-		<th>Tgl Entry</th>
-        <th>Menu</th>
-        <th>Gambar</th>
-		<th>Posisi</th>
-		<th>No Urut</th>
-		<th>Tampil</th>
-		<th>Action</th>
-            </tr><?php
-            foreach ($menu_data as $menu)
-            {
-                ?>
-                <tr>
-			<td width="80px"><?php echo ++$start ?></td>
-			<td><?php echo $menu->tgl_entry ?></td>
-            <td><?php echo $menu->nama_menu ?></td>
-			<td><?php echo $menu->gambar ?></td>
-            <td><?php echo $menu->posisi ?></td>
-			<td><?php echo $menu->no_urut ?></td>
-			<td><?php echo $menu->tampil ?></td>
-            
-			
-			<td style="text-align:center" width="200px">
-				<?php 
-				echo anchor(site_url('panelIMS/menu/read/'.$menu->id_menu),'Read'); 
-				echo ' | '; 
-				echo anchor(site_url('panelIMS/menu/update/'.$menu->id_menu),'Update'); 
-				echo ' | '; 
-				echo anchor(site_url('panelIMS/menu/delete/'.$menu->id_menu),'Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"'); 
-				?>
-			</td>
-		</tr>
-                <?php
-            }
-            ?>
-        </table>
-        <div class="row">
-            <div class="col-md-6">
-                <a href="#" class="btn btn-primary">Total Record : <?php echo $total_rows ?></a>
-		<?php echo anchor(site_url('menu/excel'), 'Excel', 'class="btn btn-primary"'); ?>
-		<?php echo anchor(site_url('menu/word'), 'Word', 'class="btn btn-primary"'); ?>
-	    </div>
-            <div class="col-md-6 text-right">
-                <?php echo $pagination ?>
-            </div>
-        </div>
-    </body>
-</html>
+                    </div>
+                <!-- <?php
+                    echo $this->pagination->create_links();
+                ?> -->
+                    
+                    <!-- /single row selection -->
+
+

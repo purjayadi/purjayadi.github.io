@@ -114,13 +114,13 @@
 
 				<li class="dropdown dropdown-user">
 					<a class="dropdown-toggle" data-toggle="dropdown">
-						<img src="assets/images/placeholder.jpg" alt="">
-						<span>Victoria</span>
+						<img src="<?php echo base_url('assets/images/user.png')?>" alt="">
+						<span><?php echo $this->session->userdata('username'); ?></span>
 						<i class="caret"></i>
 					</a>
 
 					<ul class="dropdown-menu dropdown-menu-right">
-						<li><a href="#"><i class="icon-cog5"></i> Account settings</a></li>
+						<li><a href="<?php echo base_url('users/auth/change_password')?>"><i class="icon-cog5"></i> Change Password</a></li>
 						<li><a href="<?php echo base_url('users/auth/logout')?>"><i class="icon-switch2"></i> Logout</a></li>
 					</ul>
 				</li>

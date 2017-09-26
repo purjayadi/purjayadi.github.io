@@ -1,25 +1,16 @@
-<!doctype html>
-<html>
-    <head>
-        <title>harviacode.com - codeigniter crud generator</title>
-        <link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/css/bootstrap.min.css') ?>"/>
-        <style>
-            body{
-                padding: 15px;
-            }
-        </style>
-    </head>
-    <body>
-        <h2 style="margin-top:0px">Kategori Read</h2>
+
+        <h2 style="margin-top:0px"><?php echo $read_title;?></h2>
         <table class="table">
-	    <tr><td>Gambar</td><td><?php echo $gambar; ?></td></tr>
-	    <tr><td>Ket Gambar</td><td><?php echo $ket_gambar; ?></td></tr>
-	    <tr><td>Deskripsi</td><td><?php echo $deskripsi; ?></td></tr>
-	    <tr><td>No Urut</td><td><?php echo $no_urut; ?></td></tr>
-	    <tr><td>Tgl Entry</td><td><?php echo $tgl_entry; ?></td></tr>
-	    <tr><td>Username</td><td><?php echo $username; ?></td></tr>
-	    <tr><td>Tampil</td><td><?php echo $tampil; ?></td></tr>
-	    <tr><td></td><td><a href="<?php echo site_url('kategori') ?>" class="btn btn-default">Cancel</a></td></tr>
+            <?php foreach ($record->result() as $key) {
+            ?>
+	    <tr><td>Tgl Entry</td><td>:</td><td><?php echo $key->tgl_entry; ?></td></tr>
+        <tr><td>Kategori</td><td>:</td><td><?php echo $key->nama_kategori; ?></td></tr>
+        <tr><td>Gambar</td><td>:</td><td><img src="<?php echo base_url();?>assets/imgkategori/<?php echo $key->gambar; ?>" width="400" height="400"></td></tr>
+	    <tr><td>Ket Gambar</td><td>:</td><td><?php echo $key->ket_gambar; ?></td></tr>
+	    <tr><td>Deskripsi</td><td>:</td><td><?php echo $key->deskripsi; ?></td></tr>
+	    <tr><td>No Urut</td><td>:</td><td><?php echo $key->no_urut; ?></td></tr>
+	    <!--<tr><td>Username</td><td><?php echo $username; ?></td></tr>-->
+	    <tr><td>Tampil</td><td>:</td><td><?php echo $key->tampil; ?></td></tr>
+	    <tr><td colspan="3" align="center"><a href="<?php echo site_url('panelIMS/kategori') ?>" class="btn btn-info">Back</a></td></tr>
+        <?php } ?>
 	</table>
-        </body>
-</html>

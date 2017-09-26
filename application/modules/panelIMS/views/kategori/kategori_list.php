@@ -1,85 +1,72 @@
-<!doctype html>
-<html>
-    <head>
-        <title>harviacode.com - codeigniter crud generator</title>
-        <link rel="stylesheet" href="<?php echo base_url('assetss/bootstrap/css/bootstrap.min.css') ?>"/>
-        
-    </head>
-    <body>
-        <h2 style="margin-top:0px">Kategori List</h2>
-        <div class="row" style="margin-bottom: 10px">
-            <div class="col-md-4">
-                <?php echo anchor(site_url('panelIMS/kategori/create'),'Create', 'class="btn btn-primary"'); ?>
-            </div>
-            <div class="col-md-4 text-center">
-                <div style="margin-top: 8px" id="message">
-                    <?php echo $this->session->userdata('message') <> '' ? $this->session->userdata('message') : ''; ?>
-                </div>
-            </div>
-            <div class="col-md-1 text-right">
-            </div>
-            <div class="col-md-3 text-right">
-                <form action="<?php echo site_url('panelIMS/kategori/index'); ?>" class="form-inline" method="get">
-                    <div class="input-group">
-                        <input type="text" class="form-control" name="q" value="<?php echo $q; ?>">
-                        <span class="input-group-btn">
-                            <?php 
-                                if ($q <> '')
-                                {
-                                    ?>
-                                    <a href="<?php echo site_url('panelIMS/kategori'); ?>" class="btn btn-default">Reset</a>
-                                    <?php
-                                }
-                            ?>
-                          <button class="btn btn-primary" type="submit">Search</button>
-                        </span>
+
+<?php if ($this->session->flashdata('info')): ?>
+<div class="alert bg-success alert-right">
+    <button type="button" class="close" data-dismiss="alert"><span>&times;</span><span class="sr-only">Close</span></button>
+    <span class="text-semibold"><?php echo $this->session->flashdata('info');?></span>
+</div>
+<?php endif; ?>
+<!-- Single row selection -->
+
+                    <div class="panel panel-flat">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><?php echo $table_title;?></h3>
+                            <div class="heading-elements">
+                                <ul class="icons-list">
+                                    <li><a data-action="collapse"></a></li>
+                                    <li><a data-action="reload"></a></li>
+                                    <li><a data-action="close"></a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="panel-body">
+                          <div class="col-sm-4">
+                              <a class="btn btn-primary btn-lg btn-block" href="<?php echo base_url()?>panelIMS/kategori/add"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create</a>
+                          </div>
+                        </div>
+
+                        <div class="table-responsive"> 
+                        <table class="table table-togglable table-hover">
+                            <thead>
+                                <tr>
+                                    <th data-hide="phone">Tanggal Entry</th>
+                                    <th data-toggle="true">Kategori</th>
+                                    <th data-hide="phone">Gambar</th>
+                                    <th data-hide="phone">No Urut</th>
+                                    <th data-hide="phone">Tampil</th>
+                                    <th class="text-center" data-hide="phone">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                    foreach ($record as $key) {
+                                        
+                                ?>
+                                <tr>
+                                    <td><?php echo $key->tgl_entry; ?></td>
+                                    <td><?php echo $key->nama_kategori; ?></td>
+                                    <td><img src="<?php echo base_url();?>assets/imgkategori/<?php echo $key->gambar; ?>" width="200" height="200"></td>
+                                    <td><?php echo $key->no_urut; ?></td>
+                                    <td><?php echo $key->tampil; ?></td>
+                                    <td class="text-center">
+                                        <ul class="icons-list">
+                                            <li class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                    <i class="icon-menu9"></i>
+                                                </a>
+    <ul class="dropdown-menu dropdown-menu-right">
+        <li><a href="<?php echo site_url('panelIMS/kategori/read').'/'.$key->id_kategori;?>"><span class="glyphicon glyphicon-check"></span><b> Detail</b></a></li>
+        <li><a href="<?php echo site_url('panelIMS/kategori/edit').'/'.$key->id_kategori;?>"><span class="glyphicon glyphicon-edit"></span><b> Edit</b></a></li>
+    </ul>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <?php
+                                        }
+                                ?>
+                            </tbody>
+                        </table>
                     </div>
-                </form>
-            </div>
-        </div>
-        <table class="table table-bordered" style="margin-bottom: 10px">
-            <tr>
-                <th>No</th>
-        <th>Tgl Entry</th>
-        <th>Nama Kategori</th>
-        <th>Gambar</th>
-        <th>No Urut</th>
-        <th>Tampil</th>
-        <th>Action</th>
-            </tr><?php
-            foreach ($kategori_data as $kategori)
-            {
-                ?>
-                <tr>
-			<td width="80px"><?php echo ++$start ?></td>
-            <td><?php echo $kategori->tgl_entry ?></td>
-            <td><?php echo $kategori->nama_kategori ?></td>
-			<td><?php echo $kategori->gambar ?></td>
-			<td><?php echo $kategori->no_urut ?></td>
-			<td><?php echo $kategori->tampil ?></td>
-			<td style="text-align:center" width="200px">
-				<?php 
-				echo anchor(site_url('panelIMS/kategori/read/'.$kategori->id_kategori),'Read'); 
-				echo ' | '; 
-				echo anchor(site_url('panelIMS/kategori/update/'.$kategori->id_kategori),'Update'); 
-				echo ' | '; 
-				echo anchor(site_url('panelIMS/kategori/delete/'.$kategori->id_kategori),'Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"'); 
-				?>
-			</td>
-		</tr>
-                <?php
-            }
-            ?>
-        </table>
-        <div class="row">
-            <div class="col-md-6">
-                <a href="#" class="btn btn-primary">Total Record : <?php echo $total_rows ?></a>
-		<?php echo anchor(site_url('kategori/excel'), 'Excel', 'class="btn btn-primary"'); ?>
-		<?php echo anchor(site_url('kategori/word'), 'Word', 'class="btn btn-primary"'); ?>
-	    </div>
-            <div class="col-md-6 text-right">
-                <?php echo $pagination ?>
-            </div>
-        </div>
-    </body>
-</html>
+                    </div>
+                    <!-- /single row selection -->

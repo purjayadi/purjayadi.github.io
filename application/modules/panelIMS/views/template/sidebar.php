@@ -33,32 +33,32 @@
 
 								<!-- Main -->
 								<li class="navigation-header"><span><h1>PANDUAN</h1></span><i class="glyphicon glyphicon-book" title="Main pages"></i></li>
-								<li <?php echo ($aktif == 'Dashboard')?'class="active"':"";?>><a href="<?php echo base_url('panelIMS/index')?>"><i class="icon-home4"></i> <span>DASHBOARD</span></a></li>
+								<li <?php echo ($aktif == 'Dashboard')?'class="active"':"";?>><a href="<?php echo base_url('panelIMS')?>"><i class="icon-home4"></i> <span>DASHBOARD</span></a></li>
 								<li <?php echo ($aktif == 'Pengaturan')?'class="active"':"";?>>
 									<a href="#"><i class="glyphicon glyphicon-cog"></i> <span>PENGATURAN</span></a>
 									<ul>
-										<li><a href="#">PENGATURAN DASAR</a></li>
-										<li><a href="#">WARNA</a></li>
-										<li><a href="#">DEKORASI TEKS</a></li>
-										<li><a href="#">CSS</a></li>
-										<li><a href="#">1000 ARTIKEL</a></li>
-										<li><a href="#">SETTING AUTOPOST</a></li>
-										<li><a href="#">ONLINE SUPPORT | CONTACT PERSON</a></li>
-										<li><a href="#">META SEO</a></li>
+										<li><a href="<?php echo base_url('panelIMS/Pdasar');?>">PENGATURAN DASAR</a></li>
+										<li><a href="<?php echo base_url('panelIMS/Pwarna');?>">WARNA</a></li>
+										<li><a href="<?php echo base_url('panelIMS/Pdeteks');?>">DEKORASI TEKS</a></li>
+										<li><a href="<?php echo base_url('panelIMS/Pcss');?>">CSS</a></li>
+										<li><a href="<?php echo base_url('panelIMS/P_artikel');?>">1000 ARTIKEL</a></li>
+										<li><a href="<?php echo base_url('panelIMS/Psauto');?>">SETTING AUTOPOST</a></li>
+										<li><a href="<?php echo base_url('panelIMS/Psupport');?>">ONLINE SUPPORT | CONTACT PERSON</a></li>
+										<li><a href="<?php echo base_url('panelIMS/Pmseo');?>">META SEO</a></li>
 									</ul>
 								</li>
 								<li <?php echo ($aktif == 'Master')?'class="active"':"";?>>
 									<a href="#"><i class="glyphicon glyphicon-th-list"></i> <span>MASTER DATA</span></a>
 									<ul>
-										<li><a href="<?php echo base_url('panelIMS/menu/index');?>">MENU</a></li>
-										<li><a href="<?php echo base_url('panelIMS/kategori/index');?>">KATEGORI</a></li>
-										<li><a href="<?php echo base_url('panelIMS/produk/index');?>">PRODUK</a></li>
-										<li><a href="#">ARTIKEL</a></li>
-										<li><a href="#">GAMBAR</a></li>
-										<li><a href="#">WIDGET</a></li>
-										<li><a href="#">BAWAH HEADER</a></li>
-										<li><a href="#">LINK PERPAGE</a></li>
-										<li><a href="#">BODY PERPAGE</a></li>
+										<li><a href="<?php echo base_url('panelIMS/menu');?>">MENU</a></li>
+										<li><a href="<?php echo base_url('panelIMS/kategori');?>">KATEGORI</a></li>
+										<li><a href="<?php echo base_url('panelIMS/produk');?>">PRODUK</a></li>
+										<li><a href="<?php echo base_url('panelIMS/artikel');?>">ARTIKEL</a></li>
+										<li><a href="<?php echo base_url('panelIMS/gambar');?>">GAMBAR</a></li>
+										<li><a href="<?php echo base_url('panelIMS/widget');?>">WIDGET</a></li>
+										<li><a href="<?php echo base_url('panelIMS/bheader');?>">BAWAH HEADER</a></li>
+										<li><a href="<?php echo base_url('panelIMS/lpage');?>">LINK PERPAGE</a></li>
+										<li><a href="<?php echo base_url('panelIMS/bpage');?>">BODY PERPAGE</a></li>
 									</ul>
 								</li>
 								<li <?php echo ($aktif == 'Premium')?'class="active"':"";?>>
@@ -90,7 +90,6 @@
 
 				</div>
 			</div>
-		
 			<!-- /main sidebar -->
 
 

@@ -3,9 +3,6 @@ $this->load->view('template/header');
 $this->load->view('template/navbar');
 ?>
 
-	
-
-
 	<!-- Page container -->
 	<div class="page-container">
 
@@ -23,7 +20,15 @@ $this->load->view('template/navbar');
 				<div class="content">
 
 					<!-- Dashboard content -->
+					<div class="breadcrumb-line">
+						<ul class="breadcrumb">
+							<li><i class="icon-home2 position-left"></i> <b><?php echo $judul;?></b></a></li>
+							<li><b><?php echo $sub_judul; ?></b></a></li>
+						</ul>
+					</div><br>
+
 					<?php $this->load->view($content);?>
+					<br><br>
 					<!-- /dashboard content -->
 
 <?php

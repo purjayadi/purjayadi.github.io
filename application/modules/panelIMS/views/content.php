@@ -1,3 +1,5 @@
+
+
 <div class="row">
 							<!-- Quick stats boxes -->
 							<div class="row">
@@ -6,13 +8,12 @@
 									<!-- Members online -->
 									<div class="panel bg-teal-400">
 										<div class="panel-body">
-											<div class="heading-elements">
-												<span class="heading-text badge bg-teal-800">+53,6%</span>
-											</div>
-
-											<h3 class="no-margin">3,450</h3>
-											Members online
-											<div class="text-muted text-size-small">489 avg</div>
+											<?php 
+												$ses = $this->session->identity;
+												$jmla = $this->db->query("SELECT * FROM produk where username='$ses'")->num_rows(); ?>
+											<h3 class="no-margin"><?php echo $jmla; ?></h3>
+											Jumlah Produk
+											<div class="text-muted text-size-small"></div>
 										</div>
 
 										<div class="container-fluid">
@@ -28,23 +29,12 @@
 									<!-- Current server load -->
 									<div class="panel bg-pink-400">
 										<div class="panel-body">
-											<div class="heading-elements">
-												<ul class="icons-list">
-							                		<li class="dropdown">
-							                			<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-cog3"></i> <span class="caret"></span></a>
-														<ul class="dropdown-menu dropdown-menu-right">
-															<li><a href="#"><i class="icon-sync"></i> Update data</a></li>
-															<li><a href="#"><i class="icon-list-unordered"></i> Detailed log</a></li>
-															<li><a href="#"><i class="icon-pie5"></i> Statistics</a></li>
-															<li><a href="#"><i class="icon-cross3"></i> Clear list</a></li>
-														</ul>
-							                		</li>
-							                	</ul>
-											</div>
-
-											<h3 class="no-margin">49.4%</h3>
-											Current server load
-											<div class="text-muted text-size-small">34.6% avg</div>
+											<?php 
+												$ses = $this->session->identity;
+												$jmla = $this->db->query("SELECT * FROM artikel where username='$ses'")->num_rows(); ?>
+											<h3 class="no-margin"><?php echo $jmla; ?></h3>
+											Jumlah Artikel
+											<div class="text-muted text-size-small"></div>
 										</div>
 
 										<div id="server-load"></div>
@@ -58,15 +48,9 @@
 									<!-- Today's revenue -->
 									<div class="panel bg-blue-400">
 										<div class="panel-body">
-											<div class="heading-elements">
-												<ul class="icons-list">
-							                		<li><a data-action="reload"></a></li>
-							                	</ul>
-						                	</div>
-
-											<h3 class="no-margin">$18,390</h3>
-											Today's revenue
-											<div class="text-muted text-size-small">$37,578 avg</div>
+											<h3 class="no-margin"><?php echo $this->session->userdata('old_last_login'); ?></h3>
+											Login Terakhir
+											<div class="text-muted text-size-small"></div>
 										</div>
 
 										<div id="today-revenue"></div>
@@ -78,7 +62,6 @@
 							<!-- /quick stats boxes -->
 
 
-						<div class="col-lg-4">
+					 
 
-						</div>
 					</div>
