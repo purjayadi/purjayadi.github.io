@@ -1,0 +1,588 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Purjayadi - Fullstack Developer Portfolio"
+    />
+    <title>Purjayadi | Fullstack Developer</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="container">
+        <div class="nav-brand">
+          <span class="brand-icon">&lt;/&gt;</span>
+          <span>Purjayadi</span>
+        </div>
+        <ul class="nav-menu">
+          <li>
+            <a href="#home" class="nav-link" data-en="Home" data-id="Beranda"
+              >Home</a
+            >
+          </li>
+          <li>
+            <a href="#about" class="nav-link" data-en="About" data-id="Tentang"
+              >About</a
+            >
+          </li>
+          <li>
+            <a
+              href="#experience"
+              class="nav-link"
+              data-en="Experience"
+              data-id="Pengalaman"
+              >Experience</a
+            >
+          </li>
+          <li>
+            <a
+              href="#skills"
+              class="nav-link"
+              data-en="Skills"
+              data-id="Keahlian"
+              >Skills</a
+            >
+          </li>
+          <li>
+            <a
+              href="#contact"
+              class="nav-link"
+              data-en="Contact"
+              data-id="Kontak"
+              >Contact</a
+            >
+          </li>
+        </ul>
+        <div class="lang-switcher">
+          <button class="lang-btn active" data-lang="en">EN</button>
+          <button class="lang-btn" data-lang="id">ID</button>
+        </div>
+        <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+      <div class="particles" id="particles"></div>
+      <div class="container">
+        <div class="hero-content">
+          <p
+            class="hero-greeting"
+            data-en="Hi, my name is"
+            data-id="Hai, nama saya"
+          >
+            Hi, my name is
+          </p>
+          <h1 class="hero-name">Purjayadi</h1>
+          <h2 class="hero-title">Fullstack Developer</h2>
+          <p
+            class="hero-description"
+            data-en="I build scalable and user-friendly web applications with 7+ years of experience in developing end-to-end digital solutions."
+            data-id="Saya membangun aplikasi web yang scalable dan user-friendly dengan pengalaman 7+ tahun dalam mengembangkan solusi digital end-to-end."
+          >
+            I build scalable and user-friendly web applications with 7+ years of
+            experience in developing end-to-end digital solutions.
+          </p>
+          <div class="hero-buttons">
+            <a
+              href="#contact"
+              class="btn btn-primary"
+              data-en="Get In Touch"
+              data-id="Hubungi Saya"
+              >Get In Touch</a
+            >
+            <a
+              href="#experience"
+              class="btn btn-secondary"
+              data-en="View Experience"
+              data-id="Lihat Pengalaman"
+              >View Experience</a
+            >
+          </div>
+          <div class="social-links">
+            <a
+              href="https://github.com/purjayadi"
+              target="_blank"
+              class="social-link"
+              title="GitHub"
+            >
+              <i class="fab fa-github"></i>
+            </a>
+            <a
+              href="https://www.linkedin.com/in/purjayadi-9a154013a/"
+              target="_blank"
+              class="social-link"
+              title="LinkedIn"
+            >
+              <i class="fab fa-linkedin"></i>
+            </a>
+            <a
+              href="mailto:purjayadi@gmail.com"
+              class="social-link"
+              title="Email"
+            >
+              <i class="fas fa-envelope"></i>
+            </a>
+          </div>
+        </div>
+        <div class="hero-image">
+          <div class="profile-photo-container">
+            <div class="profile-photo">
+              <img src="profile.jpg" alt="Purjayadi Profile" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+      <div class="container">
+        <h2 class="section-title">
+          <span class="title-number">01.</span>
+          <span data-en="About Me" data-id="Tentang Saya">About Me</span>
+        </h2>
+        <div class="about-content">
+          <div class="about-text">
+            <p
+              data-en="I'm a Fullstack Engineer with 7 years of experience in web development. I have a passion for creating innovative, efficient, and scalable digital solutions."
+              data-id="Saya seorang Fullstack Engineer dengan pengalaman 7 tahun dalam pengembangan web. Saya memiliki passion dalam menciptakan solusi digital yang inovatif, efisien, dan scalable."
+            >
+              I'm a <strong>Fullstack Engineer</strong> with
+              <strong>7 years</strong> of experience in web development. I have
+              a passion for creating innovative, efficient, and scalable digital
+              solutions.
+            </p>
+            <p
+              data-en="With expertise in various frontend and backend technologies, I'm able to deliver web applications that are responsive, performant, and user-friendly from concept to deployment."
+              data-id="Dengan keahlian di berbagai teknologi frontend dan backend, saya mampu menghadirkan aplikasi web yang responsive, performant, dan user-friendly dari konsep hingga deployment."
+            >
+              With expertise in various frontend and backend technologies, I'm
+              able to deliver web applications that are responsive, performant,
+              and user-friendly from concept to deployment.
+            </p>
+            <p
+              data-en="Here are some technologies I work with:"
+              data-id="Berikut beberapa teknologi yang saya gunakan:"
+            >
+              Here are some technologies I work with:
+            </p>
+            <ul class="tech-list">
+              <li><i class="fas fa-chevron-right"></i> JavaScript (ES6+)</li>
+              <li><i class="fas fa-chevron-right"></i> React & React Native</li>
+              <li><i class="fas fa-chevron-right"></i> Node.js & Express</li>
+              <li><i class="fas fa-chevron-right"></i> Golang</li>
+              <li><i class="fas fa-chevron-right"></i> SQL & NoSQL</li>
+              <li><i class="fas fa-chevron-right"></i> Docker & AWS</li>
+            </ul>
+          </div>
+          <div class="about-stats">
+            <div class="stat-card">
+              <div class="stat-icon"><i class="fas fa-code"></i></div>
+              <div class="stat-info">
+                <h3>7+</h3>
+                <p data-en="Years Experience" data-id="Tahun Pengalaman">
+                  Years Experience
+                </p>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon"><i class="fas fa-graduation-cap"></i></div>
+              <div class="stat-info">
+                <h3>S1</h3>
+                <p data-en="Computer Science" data-id="Teknik Informatika">
+                  Computer Science
+                </p>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon"><i class="fas fa-map-marker-alt"></i></div>
+              <div class="stat-info">
+                <h3>Indonesia</h3>
+                <p data-en="Location" data-id="Lokasi">Location</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience">
+      <div class="container">
+        <h2 class="section-title">
+          <span class="title-number">02.</span>
+          <span data-en="Experience" data-id="Pengalaman">Experience</span>
+        </h2>
+        <div class="experience-content">
+          <div class="timeline">
+            <!-- Experience 1: Embreo Pte Ltd -->
+            <div class="timeline-item">
+              <div class="timeline-marker"></div>
+              <div class="timeline-content">
+                <div class="timeline-header">
+                  <div>
+                    <h3>Full Stack Developer</h3>
+                    <h4 class="company">Embreo Pte Ltd · Full-time</h4>
+                  </div>
+                  <span
+                    class="timeline-duration dynamic-duration"
+                    data-start="2022-06"
+                    data-end="present"
+                  >
+                    <i class="fas fa-calendar-alt"></i>
+                    <span class="duration-text">Jun 2022 - Present</span>
+                  </span>
+                </div>
+                <p class="timeline-location">
+                  <i class="fas fa-map-marker-alt"></i> Singapore · Remote
+                </p>
+                <p
+                  class="timeline-description"
+                  data-en="Developing and maintaining full-stack web applications using modern technologies. Responsible for architecture design, feature implementation, and application performance optimization."
+                  data-id="Mengembangkan dan memelihara aplikasi web full-stack menggunakan teknologi modern. Bertanggung jawab atas desain arsitektur, implementasi fitur, dan optimasi performa aplikasi."
+                >
+                  Developing and maintaining full-stack web applications using
+                  modern technologies. Responsible for architecture design,
+                  feature implementation, and application performance
+                  optimization.
+                </p>
+                <div class="timeline-highlights">
+                  <div class="highlight-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span
+                      data-en="Designing and implementing scalable RESTful APIs"
+                      data-id="Merancang dan mengimplementasi RESTful API yang scalable"
+                    >
+                      Designing and implementing scalable RESTful APIs
+                    </span>
+                  </div>
+                  <div class="highlight-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span
+                      data-en="Developing responsive and modern user interfaces"
+                      data-id="Mengembangkan antarmuka pengguna yang responsif dan modern"
+                    >
+                      Developing responsive and modern user interfaces
+                    </span>
+                  </div>
+                  <div class="highlight-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span
+                      data-en="Database management and query optimization for optimal performance"
+                      data-id="Mengelola database dan optimasi query untuk performa optimal"
+                    >
+                      Database management and query optimization for optimal
+                      performance
+                    </span>
+                  </div>
+                  <div class="highlight-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span
+                      data-en="Implementing CI/CD and best practices in development"
+                      data-id="Implementasi CI/CD dan best practices dalam pengembangan"
+                    >
+                      Implementing CI/CD and best practices in development
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Experience 2: PT. Cahaya Brajamarketindo -->
+            <div class="timeline-item">
+              <div class="timeline-marker"></div>
+              <div class="timeline-content">
+                <div class="timeline-header">
+                  <div>
+                    <h3>Full Stack Developer</h3>
+                    <h4 class="company">
+                      PT. Cahaya Brajamarketindo · Full-time
+                    </h4>
+                  </div>
+                  <span
+                    class="timeline-duration dynamic-duration"
+                    data-start="2017-09"
+                    data-end="2022-04"
+                  >
+                    <i class="fas fa-calendar-alt"></i>
+                    <span class="duration-text">Sep 2017 - Apr 2022</span>
+                  </span>
+                </div>
+                <p class="timeline-location">
+                  <i class="fas fa-map-marker-alt"></i> Mataram, West Nusa
+                  Tenggara, Indonesia
+                </p>
+                <p
+                  class="timeline-description"
+                  data-en="Developed enterprise web applications and provided full-stack development services for various business requirements."
+                  data-id="Mengembangkan aplikasi web enterprise dan menyediakan layanan pengembangan full-stack untuk berbagai kebutuhan bisnis."
+                >
+                  Developed enterprise web applications and provided full-stack
+                  development services for various business requirements.
+                </p>
+              </div>
+            </div>
+
+            <!-- Experience 3: IT Support Staff -->
+            <div class="timeline-item">
+              <div class="timeline-marker"></div>
+              <div class="timeline-content">
+                <div class="timeline-header">
+                  <div>
+                    <h3>IT Support Staff</h3>
+                    <h4 class="company">
+                      Fakultas Kedokteran Universitas Islam Al-azhar
+                    </h4>
+                  </div>
+                  <span
+                    class="timeline-duration dynamic-duration"
+                    data-start="2016-10"
+                    data-end="2017-09"
+                  >
+                    <i class="fas fa-calendar-alt"></i>
+                    <span class="duration-text">Oct 2016 - Sep 2017</span>
+                  </span>
+                </div>
+                <p class="timeline-location">
+                  <i class="fas fa-map-marker-alt"></i> Mataram, West Nusa
+                  Tenggara, Indonesia
+                </p>
+                <p
+                  class="timeline-description"
+                  data-en="Provided technical support and maintained IT infrastructure for the faculty."
+                  data-id="Memberikan dukungan teknis dan memelihara infrastruktur IT untuk fakultas."
+                >
+                  Provided technical support and maintained IT infrastructure
+                  for the faculty.
+                </p>
+              </div>
+            </div>
+
+            <!-- Experience 4: Web Developer -->
+            <div class="timeline-item">
+              <div class="timeline-marker"></div>
+              <div class="timeline-content">
+                <div class="timeline-header">
+                  <div>
+                    <h3>Web Developer</h3>
+                    <h4 class="company">Kutamedica - Web Developer Lombok</h4>
+                  </div>
+                  <span
+                    class="timeline-duration dynamic-duration"
+                    data-start="2015-05"
+                    data-end="2017-09"
+                  >
+                    <i class="fas fa-calendar-alt"></i>
+                    <span class="duration-text">May 2015 - Sep 2017</span>
+                  </span>
+                </div>
+                <p class="timeline-location">
+                  <i class="fas fa-map-marker-alt"></i> Mataram Area, West Nusa
+                  Tenggara, Indonesia
+                </p>
+                <p
+                  class="timeline-description"
+                  data-en="Developed and maintained web applications for healthcare and clinic management systems."
+                  data-id="Mengembangkan dan memelihara aplikasi web untuk sistem manajemen kesehatan dan klinik."
+                >
+                  Developed and maintained web applications for healthcare and
+                  clinic management systems.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+      <div class="container">
+        <h2 class="section-title">
+          <span class="title-number">03.</span>
+          <span data-en="Skills & Technologies" data-id="Keahlian & Teknologi"
+            >Skills & Technologies</span
+          >
+        </h2>
+        <div class="skills-grid">
+          <div class="skill-category">
+            <div class="category-header">
+              <i class="fas fa-laptop-code"></i>
+              <h3
+                data-en="Frontend Development"
+                data-id="Pengembangan Frontend"
+              >
+                Frontend Development
+              </h3>
+            </div>
+            <div class="skill-items">
+              <span class="skill-badge">HTML5</span>
+              <span class="skill-badge">CSS3</span>
+              <span class="skill-badge">JavaScript</span>
+              <span class="skill-badge">TypeScript</span>
+              <span class="skill-badge">React</span>
+              <span class="skill-badge">React Native</span>
+              <span class="skill-badge">Expo</span>
+              <span class="skill-badge">Vue.js</span>
+              <span class="skill-badge">Tailwind CSS</span>
+              <span class="skill-badge">SASS</span>
+            </div>
+          </div>
+
+          <div class="skill-category">
+            <div class="category-header">
+              <i class="fas fa-server"></i>
+              <h3 data-en="Backend Development" data-id="Pengembangan Backend">
+                Backend Development
+              </h3>
+            </div>
+            <div class="skill-items">
+              <span class="skill-badge">Node.js</span>
+              <span class="skill-badge">Express.js</span>
+              <span class="skill-badge">Golang</span>
+              <span class="skill-badge">Python</span>
+              <span class="skill-badge">PHP</span>
+              <span class="skill-badge">RESTful API</span>
+              <span class="skill-badge">GraphQL</span>
+            </div>
+          </div>
+
+          <div class="skill-category">
+            <div class="category-header">
+              <i class="fas fa-database"></i>
+              <h3 data-en="Database & Storage" data-id="Database & Penyimpanan">
+                Database & Storage
+              </h3>
+            </div>
+            <div class="skill-items">
+              <span class="skill-badge">MySQL</span>
+              <span class="skill-badge">PostgreSQL</span>
+              <span class="skill-badge">MongoDB</span>
+              <span class="skill-badge">Redis</span>
+              <span class="skill-badge">Firebase</span>
+            </div>
+          </div>
+
+          <div class="skill-category">
+            <div class="category-header">
+              <i class="fas fa-tools"></i>
+              <h3 data-en="Tools & DevOps" data-id="Tools & DevOps">
+                Tools & DevOps
+              </h3>
+            </div>
+            <div class="skill-items">
+              <span class="skill-badge">Git</span>
+              <span class="skill-badge">Docker</span>
+              <span class="skill-badge">AWS</span>
+              <span class="skill-badge">CI/CD</span>
+              <span class="skill-badge">Linux</span>
+              <span class="skill-badge">Nginx</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+      <div class="container">
+        <h2 class="section-title">
+          <span class="title-number">04.</span>
+          <span data-en="Get In Touch" data-id="Hubungi Saya"
+            >Get In Touch</span
+          >
+        </h2>
+        <div class="contact-content">
+          <p
+            class="contact-text"
+            data-en="I'm always open to discussing new projects, collaboration opportunities, or just chatting about technology. Don't hesitate to reach out!"
+            data-id="Saya selalu terbuka untuk diskusi proyek baru, peluang kolaborasi, atau sekadar berbincang tentang teknologi. Jangan ragu untuk menghubungi saya!"
+          >
+            I'm always open to discussing new projects, collaboration
+            opportunities, or just chatting about technology. Don't hesitate to
+            reach out!
+          </p>
+          <div class="contact-cards">
+            <a href="mailto:purjayadi@gmail.com" class="contact-card">
+              <div class="contact-icon">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <h3>Email</h3>
+              <p>purjayadi@gmail.com</p>
+            </a>
+            <a
+              href="https://www.linkedin.com/in/purjayadi-9a154013a/"
+              target="_blank"
+              class="contact-card"
+            >
+              <div class="contact-icon">
+                <i class="fab fa-linkedin"></i>
+              </div>
+              <h3>LinkedIn</h3>
+              <p data-en="Connect with me" data-id="Hubungkan dengan saya">
+                Connect with me
+              </p>
+            </a>
+            <a
+              href="https://github.com/purjayadi"
+              target="_blank"
+              class="contact-card"
+            >
+              <div class="contact-icon">
+                <i class="fab fa-github"></i>
+              </div>
+              <h3>GitHub</h3>
+              <p data-en="Check my work" data-id="Lihat karya saya">
+                Check my work
+              </p>
+            </a>
+          </div>
+          <div class="education-info">
+            <i class="fas fa-graduation-cap"></i>
+            <div>
+              <strong>STMIK Bumigora</strong>
+              <span
+                data-en="S1 Computer Science • Graduated 2016"
+                data-id="S1 Teknik Informatika • Lulus 2016"
+                >S1 Computer Science • Graduated 2016</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <p
+          data-en="Designed & Built by Purjayadi"
+          data-id="Dirancang & Dibangun oleh Purjayadi"
+        >
+          Designed & Built by Purjayadi
+        </p>
+        <p
+          data-en="© 2026 All rights reserved."
+          data-id="© 2026 Hak cipta dilindungi."
+        >
+          © 2026 All rights reserved.
+        </p>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
