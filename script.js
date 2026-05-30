@@ -1,3 +1,4 @@
+// @file Portfolio interactions: language switch, animation, particles, and scroll controls.
 // ===== Smooth Scrolling =====
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   anchor.addEventListener("click", function (e) {
@@ -284,7 +285,7 @@ function createParticles() {
     particle.style.position = "absolute";
     particle.style.width = Math.random() * 3 + 1 + "px";
     particle.style.height = particle.style.width;
-    particle.style.background = "rgba(100, 255, 218, 0.3)";
+    particle.style.background = "rgba(96, 165, 250, 0.28)";
     particle.style.borderRadius = "50%";
     particle.style.left = Math.random() * 100 + "%";
     particle.style.top = Math.random() * 100 + "%";
@@ -309,9 +310,9 @@ const createScrollToTopButton = () => {
         width: 50px;
         height: 50px;
         border-radius: 8px;
-        background: rgba(100, 255, 218, 0.1);
-        color: #64ffda;
-        border: 1px solid #64ffda;
+        background: rgba(96, 165, 250, 0.16);
+        color: var(--text-highlight);
+        border: 1px solid var(--text-highlight);
         cursor: pointer;
         opacity: 0;
         visibility: hidden;
@@ -328,12 +329,12 @@ const createScrollToTopButton = () => {
   });
 
   button.addEventListener("mouseenter", () => {
-    button.style.background = "rgba(100, 255, 218, 0.2)";
+    button.style.background = "rgba(96, 165, 250, 0.28)";
     button.style.transform = "translateY(-3px)";
   });
 
   button.addEventListener("mouseleave", () => {
-    button.style.background = "rgba(100, 255, 218, 0.1)";
+    button.style.background = "rgba(96, 165, 250, 0.16)";
     button.style.transform = "translateY(0)";
   });
 
@@ -372,7 +373,7 @@ document.head.appendChild(style);
 // ===== Console Message =====
 console.log(
   "%c👋 Hi there!",
-  "color: #64ffda; font-size: 24px; font-weight: bold;",
+  "color: #60a5fa; font-size: 24px; font-weight: bold;",
 );
 console.log(
   "%cThanks for checking out my portfolio!",
