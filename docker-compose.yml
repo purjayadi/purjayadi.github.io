@@ -1,0 +1,14 @@
+services:
+  web:
+    container_name: purjayadi-website
+    image: nginx:alpine
+    ports:
+      - "8085:80"
+    volumes:
+      - .:/usr/share/nginx/html:ro
+    networks:
+      - npm
+
+networks:
+  npm:
+    external: true
