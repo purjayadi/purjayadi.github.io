@@ -3,7 +3,7 @@ services:
     container_name: purjayadi-website
     image: nginx:alpine
     ports:
-      - "purjayadi-website:8085:80"
+      - "127.0.0.1:8085:80"
     volumes:
       - .:/usr/share/nginx/html:ro
     networks:
